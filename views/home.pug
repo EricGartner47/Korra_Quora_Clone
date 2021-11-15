@@ -1,0 +1,38 @@
+style
+    include ../public/stylesheets/index.css
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" type="text/css")
+        title Document
+    body
+        .form-container
+            .title-container
+                p.title Korra
+                span.sub-title A place to share knowledge and better understand the world
+            form.login-container(action="" method="")
+                label.login Login
+                .email-container
+                    label.email(for='email') Email
+                    input.email-input(name='email' type='email')
+                .password-container
+                    label.password(for='password') Password
+                    input.password-input(name='password' type='password')
+                .pass-login-container
+                    button.login-button Login
+                    p.sign-up Sign up with email
+            .footer
+                ul.created-by
+                    li Created by:
+                    li: a(href="google.com") ldflksdf
+                    li: a(href="google.com") ldflksdf
+                    li: a(href="google.com") ldflksdf
+                    li: a(href="google.com") ldflksdf
+                .footer-links
+                    button.demo-button Demo User
+                    li © Korra, Inc. 2021
+        script(src="home.js" type="module")
+        script(src="test.js" type="module")
