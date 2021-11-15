@@ -23,12 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
-// app.use(session({
-//   store: new (store(session))(),
-//   secret: sessionSecret,
-//   resave: false,
-//   saveUninitialized: false,
-// }));
+app.use(session({
+  store: new (store(session))(),
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: false,
+}));
 
 
 
