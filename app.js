@@ -32,6 +32,9 @@ app.use(
   })
 );
 
+app.use((req, res, next))
+
+
 // create Session table if it doesn't already exist
 store.sync();
 
