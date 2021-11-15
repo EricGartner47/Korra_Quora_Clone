@@ -1,15 +1,34 @@
 var express = require('express');
 var router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
+const db = require('../db/models')
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../auth')
+
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('home');
+router.get('/', csrfProtection, function (req, res, next) {
+  res.render('home', { csrfToken: req.csrfToken() });
 });
 
-router.post('/login', csrfProtection, asyncHandler(async (req, res) => {
+const loginValidations = [
+  check("email")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a valid email."),
+  check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a valid password."),
+]
 
+router.post('/login', csrfProtection, loginValidations, handleValidationErrors, asyncHandler(async (req, res) => {
+  let { email, password } = req.body
 
-  res.render('questions', {});
+  let user = await db.User.findOne({ where: { email } })
+
+  if (user !== null) {
+
+    res.render('questions', { csrfToken: req.csrfToken() });
+  }
+
 }));
 
 module.exports = router;
