@@ -34,25 +34,27 @@ html(lang="en")
                     li: a(href="https://github.com/depash") Depash Nepal
                     li: a(href="https://github.com/droid97.com") Andres Aguilar-Garcia
                     li: a(href="https://github.com/EricGartner47.com") Eric Gartner
-                form(action="", method="post")
+                form(action="/demo", method="post")
                     button.demo-button Demo User
+                    input(type='hidden' name='_csrf' value=csrfToken)
                 .footer-links
                     li © Korra, Inc. 2021
         .sign-up-form
-            form.sign-up-container(action="" method="")
+            form.sign-up-container(action="/signup" method="POST")
                 label.sign-up-title Sign Up
+                input(type='hidden' name='_csrf' value=csrfToken)
                 .sign-up-email
                     label.email(for='email') Email
                     input.email-input(name='email' type='email')
                 .sign-up-username
-                    label.username(for='email') Username
-                    input.username-input(name='email' type='email')
+                    label.username(for='username') Username
+                    input.username-input(name='username' type='text')
                 .password-container
                     label.password(for='password') Password
                     input.password-input(name='password' type='password')
                 .confirm-password-container
                     label.confirm-password(for='confirmPassword') Confirm Password
-                    input.confirm-password-input(name='password' type='password')
+                    input.confirm-password-input(name='confirmPassword' type='password')
                 .pass-login-container
                     button.login-button Sign Up
                 i(class="fa-solid fa-xmark")
