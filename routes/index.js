@@ -6,7 +6,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../auth')
 const { bcrypt } = require('bcryptjs');
 const { isTemplateLiteral } = require('babel-types');
-const { ValidationError } = require('sequelize/types');
+// const { ValidationError } = require('sequelize/types');
 
 /* GET home page. */
 router.get('/', csrfProtection, function (req, res, next) {
@@ -15,14 +15,14 @@ router.get('/', csrfProtection, function (req, res, next) {
 
 const signupValidation = [
   check("username")
-    .exists({checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('Please provide a value for username')
-    .isLength({max: 55 })
+    .isLength({ max: 55 })
     .withMessage('Username must not be more than 55 characters long'),
   check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid email")
-    .isLength({max: 55 })
+    .isLength({ max: 55 })
     .withMessage('Email address must not be more than 55 characters long')
     .isEmail()
     .withMessage('Email Address is not valid email')
@@ -33,7 +33,7 @@ const signupValidation = [
             return Promise.reject('The provided Email Address is already in use by another account');
           }
         });
-    }),,
+    }), ,
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid password")
@@ -46,7 +46,7 @@ const signupValidation = [
     .withMessage('Confirm Password must not be more than 50 characters long')
     .custom((value, { req }) => {
       if (value !== req.body.password) {
-      throw new Error('Confirm Password does not match Password');
+        throw new Error('Confirm Password does not match Password');
       }
       return true;
     }),
@@ -57,7 +57,7 @@ const loginValidations = [
   check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid email")
-    .isLength({max: 55})
+    .isLength({ max: 55 })
     .withMessage('Email address must not be more than 55 characters long')
     .isEmail()
     .withMessage('Email Address is not valid email'),
@@ -85,8 +85,8 @@ router.post('/login', csrfProtection, loginValidations, handleValidationErrors, 
 
 }));
 
-router.post('/signup', csrfProtection, signupValidation, handleValidationErrors, asyncHandler(async (req, res, errors)=> {
-  const {email, username, password} = req.body
+router.post('/signup', csrfProtection, signupValidation, handleValidationErrors, asyncHandler(async (req, res, errors) => {
+  const { email, username, password } = req.body
   const user = db.User.build({
     username,
     email
