@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const db = require('../db/models')
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../auth')
-const { bcrypt } = require('bcryptjs');
+const { check, validationResult } = require('express-validator');
+// const { handleValidationErrors } = require('../auth')
+const bcrypt = require('bcryptjs');
 const { isTemplateLiteral } = require('babel-types');
 // const { ValidationError } = require('sequelize/types');
 
@@ -66,7 +66,7 @@ const loginValidations = [
     .withMessage("Please provide a valid password"),
 ]
 
-router.post('/login', csrfProtection, loginValidations, handleValidationErrors, asyncHandler(async (req, res) => {
+router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req, res) => {
   let { email, password } = req.body
 
   let user = await db.User.findOne({ where: { email } })
@@ -85,16 +85,34 @@ router.post('/login', csrfProtection, loginValidations, handleValidationErrors, 
 
 }));
 
-router.post('/signup', csrfProtection, signupValidation, handleValidationErrors, asyncHandler(async (req, res, errors) => {
+router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
+  res.render('signup', { csrfToken: req.csrfToken() });
+}))
+
+router.post('/signup', csrfProtection, asyncHandler(async (req, res) => {
   const { email, username, password } = req.body
   const user = db.User.build({
     username,
-    email
+    email,
+    hashedPassword: password
   })
-  console.log(errors)
-  const hashedPassword = await bcrypt.hash(password, 10)
-  user.hashedPassword = hashedPassword
-  res.render('/questions')
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    hashedPassword = await bcrypt.hash(password, 10);
+    user.hashedPassword = hashedPassword;
+    await user.save();
+    res.redirect('/questions');
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.render('signup', {
+      title: 'Register',
+      user,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }
 }))
 
 module.exports = router;
