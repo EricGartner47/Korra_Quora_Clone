@@ -1,69 +1,59 @@
-style
-    include ../public/stylesheets/index.css
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" type="text/css")
-        script(src="https://kit.fontawesome.com/560409b863.js" crossorigin="anonymous")
-        script(src="/javascripts/index.js" type="module")
-        title Document
-    body
-        if errors
-            div()
-                p The following error(s) occurred:
-                ul
-                each error in errors
-                    li= error
-        .form-container
-            .title-container
-                p.title Korra
-                span.sub-title A place to share knowledge and better understand the world
-            form.login-container(action="/login" method="POST")
-                input(type='hidden' name='_csrf' value=csrfToken)
-                label.login Login
-                .email-container
-                    label.email(for='email') Email
-                    input.email-input(name='email' type='email')
-                .password-container
-                    label.password(for='password') Password
-                    input.password-input(name='password' type='password')
-                .pass-login-container
-                    button.login-button Login
-                    a(href="/signup").sign-up Sign up with email
+extends layout.pug
 
-            .footer
-                ul.created-by
-                    li Created by:
-                    li: a(href="https://github.com/jburnt17") Jared Burnett
-                    li: a(href="https://github.com/depash") Depash Nepal
-                    li: a(href="https://github.com/droid97.com") Andres Aguilar-Garcia
-                    li: a(href="https://github.com/EricGartner47.com") Eric Gartner
-                form(action="/demo", method="post")
-                    button.demo-button Demo User
-                    input(type='hidden' name='_csrf' value=csrfToken)
-                .footer-links
-                    li © Korra, Inc. 2021
-        //- .sign-up-form
-        //-     form.sign-up-container(action="/signup" method="POST")
-        //-         label.sign-up-title Sign Up
-        //-         input(type='hidden' name='_csrf' value=csrfToken)
-        //-         .sign-up-email
-        //-             label.email(for='email') Email
-        //-             input.email-input(name='email' type='email')
-        //-         .sign-up-username
-        //-             label.username(for='username') Username
-        //-             input.username-input(name='username' type='text')
-        //-         .password-container
-        //-             label.password(for='password') Password
-        //-             input.password-input(name='password' type='password')
-        //-         .confirm-password-container
-        //-             label.confirm-password(for='confirmPassword') Confirm Password
-        //-             input.confirm-password-input(name='confirmPassword' type='password')
-        //-         .pass-login-container
-        //-             button.login-button Sign Up
-        //-         i(class="fa-solid fa-xmark")
-        script(src="home.js" type="module")
-        script(src="test.js" type="module")
+block content
+    if errors
+        div()
+            p The following error(s) occurred:
+            ul
+            each error in errors
+                li= error
+    .form-container
+        .title-container
+            p.title Korra
+            span.sub-title A place to share knowledge and better understand the world
+        form.login-container(action="/login" method="POST")
+            input(type='hidden' name='_csrf' value=csrfToken)
+            label.login Login
+            .email-container
+                label.email(for='email') Email
+                input.email-input(name='email' type='email')
+            .password-container
+                label.password(for='password') Password
+                input.password-input(name='password' type='password')
+            .pass-login-container
+                button.login-button Login
+                a(href="/signup").sign-up Sign up with email
+
+        .footer
+            ul.created-by
+                li Created by:
+                li: a(href="https://github.com/jburnt17") Jared Burnett
+                li: a(href="https://github.com/depash") Depash Nepal
+                li: a(href="https://github.com/droid97.com") Andres Aguilar-Garcia
+                li: a(href="https://github.com/EricGartner47.com") Eric Gartner
+            form(action="/demo", method="post")
+                button.demo-button Demo User
+                input(type='hidden' name='_csrf' value=csrfToken)
+            .footer-links
+                li © Korra, Inc. 2021
+    //- .sign-up-form
+    //-     form.sign-up-container(action="/signup" method="POST")
+    //-         label.sign-up-title Sign Up
+    //-         input(type='hidden' name='_csrf' value=csrfToken)
+    //-         .sign-up-email
+    //-             label.email(for='email') Email
+    //-             input.email-input(name='email' type='email')
+    //-         .sign-up-username
+    //-             label.username(for='username') Username
+    //-             input.username-input(name='username' type='text')
+    //-         .password-container
+    //-             label.password(for='password') Password
+    //-             input.password-input(name='password' type='password')
+    //-         .confirm-password-container
+    //-             label.confirm-password(for='confirmPassword') Confirm Password
+    //-             input.confirm-password-input(name='confirmPassword' type='password')
+    //-         .pass-login-container
+    //-             button.login-button Sign Up
+    //-         i(class="fa-solid fa-xmark")
+    script(src="home.js" type="module")
+    script(src="test.js" type="module")

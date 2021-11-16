@@ -1,11 +1,20 @@
-extends layout
-
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
-
-block content
-  h1= title
-  p Welcome to your Project Skeleton
+style
+    include ../public/stylesheets/question.css
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" type="text/css")
+        script(src="https://kit.fontawesome.com/560409b863.js" crossorigin="anonymous")
+        script(src="/javascripts/index.js" type="module")
+        title Korra
+    body
+      nav.nav-container
+        a(href="/questions" class="logo") Korra
+        .search-container
+          i(class="fas fa-search")
+          input.search-input
+        .right-nav-container
+          a(href="/questions/create" class="add-question-button") Add Question
+          a(href="/" class="log-out-button") Log Out

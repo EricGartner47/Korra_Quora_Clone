@@ -130,12 +130,13 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('signup', {
-      title: 'Register',
+      title: 'Signup',
       user,
       errors,
       csrfToken: req.csrfToken(),
     });
   }
+  res.redirect('/questions')
 }))
 
 module.exports = router;
