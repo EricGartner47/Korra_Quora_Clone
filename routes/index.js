@@ -24,9 +24,11 @@ router.post('/login', csrfProtection, loginValidations, handleValidationErrors, 
 
   let user = await db.User.findOne({ where: { email } })
 
+
+
   if (user !== null) {
-    let passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
-    if (passwordMatch) {
+    // let passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+    if (password === user.hashedPassword.toString()) {
       res.render('questions', { csrfToken: req.csrfToken() });
     }
   }
