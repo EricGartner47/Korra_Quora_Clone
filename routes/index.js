@@ -57,17 +57,32 @@ const loginValidations = [
   check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid email")
-    .isLength({ max: 55 })
-    .withMessage('Email address must not be more than 55 characters long')
     .isEmail()
-    .withMessage('Email Address is not valid email'),
+    .withMessage('Email Address is not valid email')
+    .custom((value) => {
+      return db.User.findOne({ where: { email: value } })
+        .then((user) => {
+          if (!user) {
+            throw new Error('wrong email or password');
+          }
+        });
+    }).withMessage('wrong email or password'),
   check("password")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a valid password"),
+    .withMessage("Please provide a valid password")
+    .custom((value) => {
+      return db.User.findOne({ where: { email: value } })
+        .then((user) => {
+          if (!user) {
+            throw new Error('wrong email or password');
+          }
+        });
+    }).withMessage('wrong email or password')
 ]
 
 router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req, res) => {
   let { email, password } = req.body
+
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
