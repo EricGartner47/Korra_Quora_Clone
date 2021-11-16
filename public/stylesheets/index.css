@@ -162,3 +162,49 @@ body {
 .created-by > li > a:hover {
     text-decoration: underline;
 }
+
+.sign-up-form {
+    height: 550px;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, .4);
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 80%;
+    width: 80%;
+    padding: 12px 12px;
+}
+.sign-up-container > div > label {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 4px;
+}
+.sign-up-container > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.sign-up-container > div > input {
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 3px;
+    width: 100%;
+    height: 2.5rem;
+    font-size: 1rem;
+    padding: .5rem;
+}
+.sign-up-title {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.4);
+}
