@@ -20,4 +20,4 @@ Korra is a full stack web application that allows logged users to post questions
 #### PostgreSQL
 #### Sequelize
 
-## Conclusion and Next Stepses
+## Conclusion and Next Steps
