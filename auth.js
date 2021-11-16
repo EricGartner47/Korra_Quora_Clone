@@ -1,16 +1,13 @@
-// const { validationResult } = require('express-validator');
+const db = require('./db/models');
 
-// const handleValidationErrors = (req, res, next) => {
-//     const validationErrors = validationResult(req);
-//     if (!validationErrors.isEmpty()) {
-//         const errors = validationErrors.array().map((error) => error.msg);
-//         const err = Error("Bad request.");
-//         err.errors = errors;
-//         err.status = 400;
-//         err.title = "Bad request.";
-//         return next(errors);
-//     }
-//     next()
-// };
+const loginUser = (req, res, user) => {
+    req.session.auth = { userId: user.id }
+}
 
-// module.exports = { handleValidationErrors }
+
+
+
+
+module.exports = {
+    loginUser
+}

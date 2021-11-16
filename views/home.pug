@@ -4,28 +4,27 @@ block content
     style
         include ../public/stylesheets/index.css
     body
-    if errors
-        div()
-            p The following error(s) occurred:
-            ul
-            each error in errors
-                li= error
-    .form-container
-        .title-container
-            p.title Korra
-            span.sub-title A place to share knowledge and better understand the world
-        form.login-container(action="/login" method="POST")
-            input(type='hidden' name='_csrf' value=csrfToken)
-            label.login Login
-            .email-container
-                label.email(for='email') Email
-                input.email-input(name='email' type='email')
-            .password-container
-                label.password(for='password') Password
-                input.password-input(name='password' type='password')
-            .pass-login-container
-                button.login-button Login
-                a(href="/signup").sign-up Sign up with email
+        .form-container
+            .title-container
+                p.title Korra
+                span.sub-title A place to share knowledge and better understand the world
+                if errors
+                    div()
+                        ul
+                            each error in errors
+                                li= error
+            form.login-container(action="/login" method="POST")
+                input(type='hidden' name='_csrf' value=csrfToken)
+                label.login Login
+                .email-container
+                    label.email(for='email') Email
+                    input.email-input(name='email' type='email')
+                .password-container
+                    label.password(for='password') Password
+                    input.password-input(name='password' type='password')
+                .pass-login-container
+                    button.login-button Login
+                    a(href="/signup").sign-up Sign up with email
 
         .footer
             ul.created-by
