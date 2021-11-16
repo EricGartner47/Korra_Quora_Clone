@@ -58,36 +58,45 @@ const loginValidations = [
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid email")
     .isEmail()
-    .withMessage('Email Address is not valid email')
-    .custom((value) => {
-      return db.User.findOne({ where: { email: value } })
-        .then((user) => {
-          if (!user) {
-            throw new Error('wrong email or password');
-          }
-        });
-    }).withMessage('wrong email or password'),
+    .withMessage('Email Address is not valid email'),
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid password")
-    .custom((value) => {
-      return db.User.findOne({ where: { email: value } })
-        .then((user) => {
-          if (!user) {
-            throw new Error('wrong email or password');
-          }
-        });
-    }).withMessage('wrong email or password')
 ]
 
 router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req, res) => {
   let { email, password } = req.body
+  let user = await db.User.findOne({
+    where: { email }
+  })
 
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-
-    res.redirect('/questions');
+    if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+      if (passwordMatch) {
+        res.redirect('/questions');
+      }
+      else {
+        const errors = []
+        errors.push("Password incorrect.")
+        res.render('home', {
+          title: 'Login',
+          errors,
+          csrfToken: req.csrfToken(),
+        });
+      }
+    }
+    else {
+      const errors = []
+      errors.push("Email")
+      res.render('home', {
+        title: 'Login',
+        errors,
+        csrfToken: req.csrfToken(),
+      });
+    }
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('home', {
