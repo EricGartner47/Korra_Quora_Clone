@@ -53,7 +53,7 @@ const signupValidation = [
     }),
 ]
 
-
+//test
 const loginValidations = [
   check("email")
     .exists({ checkFalsy: true })
