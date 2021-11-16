@@ -53,7 +53,7 @@ const signupValidation = [
     }),
 ]
 
-//test
+
 const loginValidations = [
   check("email")
     .exists({ checkFalsy: true })
@@ -128,7 +128,7 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
     hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    res.redirect('/questions');
+    res.render('questions');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('signup', {
@@ -138,7 +138,15 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
       csrfToken: req.csrfToken(),
     });
   }
-  res.redirect('/questions')
+}))
+
+router.post('/demo', asyncHandler(async(req, res)=> {
+  const user = await db.User.findOne({
+    where: {email: 'demo@demo.com'}
+
+  })
+  loginUser(req, res, user)
+  res.render('questions')
 }))
 
 module.exports = router;
