@@ -15,6 +15,11 @@ html(lang="en")
             .title-container
                 p.title Korra
                 span.sub-title A place to share knowledge and better understand the world
+                if errors
+                    div()
+                        ul
+                            each error in errors
+                                li= error
             form.login-container(action="/login" method="POST")
                 input(type='hidden' name='_csrf' value=csrfToken)
                 label.login Login
