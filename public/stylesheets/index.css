@@ -139,6 +139,7 @@ body {
     border-radius: 2rem;
     cursor: pointer;
     bottom: .5em;
+    z-index: 1;
 }
 
 .created-by {
