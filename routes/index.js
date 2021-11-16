@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const db = require('../db/models')
+const { loginUser } = require('../auth');
 const { check, validationResult } = require('express-validator');
 // const { handleValidationErrors } = require('../auth')
 const bcrypt = require('bcryptjs');
@@ -76,6 +77,7 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
     if (user !== null) {
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
       if (passwordMatch) {
+        loginUser(req, res, user);
         res.redirect('/questions');
       }
       else {
