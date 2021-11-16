@@ -27,13 +27,13 @@ const signupValidation = [
     .isEmail()
     .withMessage('Email Address is not valid email')
     .custom((value) => {
-      return db.User.findOne({ where: { emailAddress: value } })
+      return db.User.findOne({ where: { email: value } })
         .then((user) => {
           if (user) {
-            return Promise.reject('The provided Email Address is already in use by another account');
+            throw new Error('Email already exists.');
           }
         });
-    }), ,
+    }).withMessage('Email already exists.'),
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid password")
@@ -68,19 +68,19 @@ const loginValidations = [
 
 router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req, res) => {
   let { email, password } = req.body
+  const validatorErrors = validationResult(req);
 
-  let user = await db.User.findOne({ where: { email } })
+  if (validatorErrors.isEmpty()) {
 
-
-
-  if (user !== null) {
-    // let passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
-    if (password === user.hashedPassword.toString()) {
-      res.render('questions', { csrfToken: req.csrfToken() });
-    }
-  }
-  else {
-    res.render('wrong')
+    res.redirect('/questions');
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.render('home', {
+      title: 'Login',
+      user,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   }
 
 }));
@@ -89,12 +89,11 @@ router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
   res.render('signup', { csrfToken: req.csrfToken() });
 }))
 
-router.post('/signup', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req, res) => {
   const { email, username, password } = req.body
   const user = db.User.build({
     username,
     email,
-    hashedPassword: password
   })
 
   const validatorErrors = validationResult(req);

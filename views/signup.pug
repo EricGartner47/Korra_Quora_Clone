@@ -11,6 +11,12 @@ html(lang="en")
         script(src="/javascripts/index.js" type="module")
         title Document
     body
+        if errors
+            div()
+                p The following error(s) occurred:
+                ul
+                each error in errors
+                    li= error
         .sign-up-form
                 form.sign-up-container(action="/signup" method="POST")
                     label.sign-up-title Sign Up
