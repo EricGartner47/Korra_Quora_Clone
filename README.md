@@ -14,10 +14,10 @@ Korra is a full stack web application that allows logged users to post questions
 
 ## Backend Overview
 
+### Backend Technologies Used
+
 #### ExpressJS
 #### PostgreSQL
 #### Sequelize
-
-### Backend Technologies Used
 
 ## Conclusion and Next Steps
