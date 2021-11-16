@@ -1,6 +1,9 @@
 extends layout.pug
 
 block content
+    style
+        include ../public/stylesheets/index.css
+    body
     if errors
         div()
             p The following error(s) occurred:

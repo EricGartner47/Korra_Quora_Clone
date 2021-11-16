@@ -22,7 +22,7 @@ const signupValidation = [
   check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a valid email")
-    .isLength({ max: 55 })
+    .isLength({ max: 250 })
     .withMessage('Email address must not be more than 55 characters long')
     .isEmail()
     .withMessage('Email Address is not valid email')

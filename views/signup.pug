@@ -1,28 +1,36 @@
-extends layout.pug
-
-block content
-    if errors
-        div()
-            p The following error(s) occurred:
-            ul
-            each error in errors
-                li= error
-    .sign-up-form
-            form.sign-up-container(action="/signup" method="POST")
-                label.sign-up-title Sign Up
-                input(type='hidden' name='_csrf' value=csrfToken)
-                .sign-up-email
-                    label.email(for='email') Email
-                    input.email-input(name='email' type='email')
-                .sign-up-username
-                    label.username(for='username') Username
-                    input.username-input(name='username' type='text')
-                .password-container
-                    label.password(for='password') Password
-                    input.password-input(name='password' type='password')
-                .confirm-password-container
-                    label.confirm-password(for='confirmPassword') Confirm Password
-                    input.confirm-password-input(name='confirmPassword' type='password')
-                .pass-login-container
-                    button.login-button Sign Up
-                i(class="fa-solid fa-xmark")
+style
+    include ../public/stylesheets/signup.css
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" type="text/css")
+        script(src="https://kit.fontawesome.com/560409b863.js" crossorigin="anonymous")
+        script(src="/javascripts/index.js" type="module")
+        title Korra
+    body
+        if errors
+            .error-container
+                p The following error(s) occurred:
+                ul
+                each error in errors
+                    li= error
+        .sign-up-form
+                form.sign-up-container(action="/signup" method="POST")
+                    label.sign-up-title Sign Up
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    .sign-up-email
+                        label.email(for='email') Email
+                        input.email-input(name='email' type='email')
+                    .sign-up-username
+                        label.username(for='username') Username
+                        input.username-input(name='username' type='text')
+                    .password-container
+                        label.password(for='password') Password
+                        input.password-input(name='password' type='password')
+                    .confirm-password-container
+                        label.confirm-password(for='confirmPassword') Confirm Password
+                        input.confirm-password-input(name='confirmPassword' type='password')
+                    .pass-login-container
+                        button.login-button Sign Up
