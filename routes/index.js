@@ -4,7 +4,7 @@ const { csrfProtection, asyncHandler } = require('./utils')
 const db = require('../db/models')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../auth')
-
+const { bcrypt } = require('bcryptjs')
 /* GET home page. */
 router.get('/', csrfProtection, function (req, res, next) {
   res.render('home', { csrfToken: req.csrfToken() });
@@ -25,8 +25,13 @@ router.post('/login', csrfProtection, loginValidations, handleValidationErrors, 
   let user = await db.User.findOne({ where: { email } })
 
   if (user !== null) {
-
-    res.render('questions', { csrfToken: req.csrfToken() });
+    let passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString())
+    if (passwordMatch) {
+      res.render('questions', { csrfToken: req.csrfToken() });
+    }
+  }
+  else {
+    res.render('wrong')
   }
 
 }));
