@@ -10,9 +10,13 @@ router.get('/', asyncHandler(async (req, res, next) => {
   const questions = await db.Question.findAll({
     limit: 10,
     order: [['createdAt', 'DESC']],
-    incude: db.Topic
+    include: [
+      {
+        model: db.Topic
+      }
+    ]
   })
-  console.log(questions)
+  console.log(questions[0].Topic)
   res.render('questions', { user, questions });
 }));
 router.get('/create', csrfProtection, asyncHandler(async (req, res, next) => {
