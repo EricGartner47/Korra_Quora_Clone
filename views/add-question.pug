@@ -3,6 +3,11 @@ block content
     style
         include ../public/stylesheets/add-question.css
     body
+        if errors
+            .error-container
+                ul
+                    each error in errors
+                        li= error
         nav.nav-container
             a(href="/questions" class="logo") Korra
             .search-container
@@ -18,7 +23,7 @@ block content
                 input(type='text' name="title")
             .topic-container
                 label(for="topic") Topic
-                select
+                select(name='topic')
                     each topic in topics
                         option(value=topic.id)= topic.topic
             .description-container
