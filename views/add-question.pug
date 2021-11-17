@@ -12,3 +12,17 @@ block content
                 a(href="/logout" class="log-out-button") Log Out
         form(class="form-container" action="/questions/create" method="POST")
             input(type='hidden' name='_csrf' value=csrfToken)
+            label Add Your Question
+            .title-container
+                label(for='title') Title
+                input(type='text' name="title")
+            .topic-container
+                label(for="topic") Topic
+                select
+                    each topic in topics
+                        option(value=topic.id)= topic.topic
+            .description-container
+                label(for="description") Description
+                textarea(name="description", cols="100", rows="20")
+            .submit-question-container
+                button(type='submit') Add Question

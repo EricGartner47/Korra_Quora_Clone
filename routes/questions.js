@@ -11,7 +11,8 @@ router.get('/', asyncHandler(async(req, res, next) => {
   res.render('questions', {user});
 }));
 router.get('/create',csrfProtection, asyncHandler(async(req, res, next) => {
-  res.render('add-question', {csrfToken: req.csrfToken()});
+  const topics = await db.Topic.findAll()
+  res.render('add-question', {topics, csrfToken: req.csrfToken()});
 }))
 
 router.post('/create', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -19,7 +20,7 @@ router.post('/create', csrfProtection, asyncHandler(async(req, res, next) => {
 
   let { title, description, topic } = req.body;
   //const question = db.Question.build({title, description, topic, })
-  console.log(user);
+  // console.log(user);
 }))
 
 module.exports = router;
