@@ -84,8 +84,8 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
       else {
 
         const errors = []
-        errors.push("Password incorrect.")
-        res.redirect('home', {
+        errors.push("Email or password incorrect")
+        res.render('home', {
           title: 'Login',
           errors,
           csrfToken: req.csrfToken(),
@@ -93,19 +93,17 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
       }
     }
     else {
-      console.log('yes')
       const errors = []
-      errors.push("Email")
-      res.redirect('home', {
+      errors.push("Email or password incorrect")
+      res.render('home', {
         title: 'Login',
         errors,
         csrfToken: req.csrfToken(),
       });
     }
   } else {
-    console.log('hi')
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.redirect('home', {
+    res.render('home', {
       title: 'Login',
       user,
       errors,
@@ -127,7 +125,6 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
   })
 
   const validatorErrors = validationResult(req);
-  console.log(validatorErrors);
   if (validatorErrors.isEmpty()) {
     hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
