@@ -10,11 +10,6 @@ router.get('/', asyncHandler(async(req, res, next) => {
   // console.log('1234', req.session.auth)
   res.render('questions', {user});
 }));
-<<<<<<< HEAD
-
-router.get('/create', asyncHandler(async(req, res, next) => {
-  res.render('add-question')
-=======
 router.get('/create',csrfProtection, asyncHandler(async(req, res, next) => {
   res.render('add-question', {csrfToken: req.csrfToken()});
 }))
@@ -25,7 +20,6 @@ router.post('/create', csrfProtection, asyncHandler(async(req, res, next) => {
   let { title, description, topic } = req.body;
   //const question = db.Question.build({title, description, topic, })
   console.log(user);
->>>>>>> questionBackEnd
 }))
 
 module.exports = router;
