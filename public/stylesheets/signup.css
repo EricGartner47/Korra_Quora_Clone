@@ -78,6 +78,7 @@ body {
     padding: 1rem;
     color: rgba(100, 100, 100, 0.8);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .login-button {
