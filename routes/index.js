@@ -105,7 +105,7 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
   } else {
     console.log('hi')
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('home', {
+    res.redirect('home', {
       title: 'Login',
       user,
       errors,
@@ -116,7 +116,7 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
 }));
 
 router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
-  res.render('signup', { csrfToken: req.csrfToken() });
+  res.redirect('signup', { csrfToken: req.csrfToken() });
 }))
 
 router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req, res) => {
