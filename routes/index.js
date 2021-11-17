@@ -144,9 +144,9 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
   }
 }))
 
-router.post('/demo', asyncHandler(async(req, res)=> {
+router.post('/demo', asyncHandler(async (req, res) => {
   const user = await db.User.findOne({
-    where: {email: 'demo@demo.com'}
+    where: { email: 'demo@demo.com' }
   })
   loginUser(req, res, user)
   res.redirect('/questions')
@@ -154,7 +154,7 @@ router.post('/demo', asyncHandler(async(req, res)=> {
 
 router.get('/logout', (req, res) => {
   //TO DO
-  delete req.session.auth
+  delete req.session.auth;
   // res.redirect('/');
   req.session.save(() => res.redirect('/'))
 })
