@@ -95,7 +95,7 @@ body {
 
 .error-container {
     position: absolute;
-    top: 10%;
+    top: 1%;
     right: 50%;
     background-color: white;
     transform: translate(50%, 0%);
