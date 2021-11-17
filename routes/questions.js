@@ -16,18 +16,18 @@ router.get('/create',csrfProtection, asyncHandler(async(req, res, next) => {
 }))
 
 //Question Validators for adding a new question
-const questionValidators = [
-  check('question')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for question field'),
-  check('title')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for title field')
-    .isLength({ max: 50 })
-    .withMessage('Title must not be more than 50 characters long'),
-];
+// const questionValidators = [
+//   check('question')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Please provide a value for question field'),
+//   check('title')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Please provide a value for title field')
+//     .isLength({ max: 50 })
+//     .withMessage('Title must not be more than 50 characters long'),
+// ];
 
-router.post('/create', csrfProtection, questionValidators, asyncHandler(async(req, res) => {
+router.post('/create', csrfProtection, asyncHandler(async(req, res) => {
   const user = await db.User.findByPk(req.session.auth.userId);
 
   let { title, description, userId, topicId} = req.body;
