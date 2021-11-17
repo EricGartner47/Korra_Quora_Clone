@@ -33,7 +33,7 @@ const questionValidators = [
     .withMessage('Question description must not be greater than 2000 characters')
 ];
 
-router.post('/create', csrfProtection, questionValidators, asyncHandler(async(req, res) => {
+router.post('/create', csrfProtection, asyncHandler(async(req, res) => {
   const user = await db.User.findByPk(req.session.auth.userId);
   const topics = await db.Topic.findAll()
   let { title, description, topic} = req.body;
