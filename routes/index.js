@@ -149,12 +149,12 @@ router.post('/demo', asyncHandler(async (req, res) => {
     where: { email: 'demo@demo.com' }
   })
   loginUser(req, res, user)
-  res.redirect('/questions')
+  req.session.save(() => res.redirect('/questions'))
 }))
 
 router.get('/logout', (req, res) => {
   //TO DO
-  delete req.session.auth;
+  delete req.session.auth
   // res.redirect('/');
   req.session.save(() => res.redirect('/'))
 })
