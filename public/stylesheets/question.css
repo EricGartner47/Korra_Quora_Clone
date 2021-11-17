@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
@@ -46,12 +47,13 @@ body {
     width: 100%;
 }
 .question-list{
-    height: 20px;
-    width: 30px;
-    position: absolute;
-    background-color: aqua;
-    top:50%;
-    right:50%;
+    display: flex;
+    /* height: fit-content;
+    width: fit-content; */
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .fa-search {
@@ -62,7 +64,6 @@ body {
     right: 0;
     padding: 1rem;
     position: absolute;
-    font-family: "Lobster";
     color:rgba(167, 2, 2, .9);
     font-size: 0.8rem;
     display: flex;
@@ -88,4 +89,20 @@ body {
     color:rgba(167, 2, 2, .9);
     border-radius: 2rem;
     font-size: 1rem;
+}
+
+.question-button-container{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.question {
+    position:relative;
+    padding: 10px;
+    background-color: red;
+    height: 40%;
+    width: 30%;
 }

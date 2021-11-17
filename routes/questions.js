@@ -32,8 +32,8 @@ const questionValidators = [
   check('title')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a title for your question')
-    .isLength({ max: 50 })
-    .withMessage('Title must not be more than 50 characters long'),
+    .isLength({ max: 500})
+    .withMessage('Title must not be more than 500 characters long'),
   check('description')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a description for your question')
