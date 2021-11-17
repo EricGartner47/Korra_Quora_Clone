@@ -16,5 +16,6 @@ html(lang="en")
           i(class="fas fa-search")
           input.search-input
         .right-nav-container
+          span(class="user-name") Welcome #{user.username}!
           a(href="/questions/create" class="add-question-button") Add Question
-          a(href="/" class="log-out-button") Log Out
+          a(href="/logout" class="log-out-button") Log Out

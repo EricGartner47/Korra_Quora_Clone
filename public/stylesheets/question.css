@@ -55,7 +55,7 @@ body {
     position: absolute;
     font-family: "Lobster";
     color:rgba(167, 2, 2, .9);
-    font-size: 1rem;
+    font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
     width: 15rem;
@@ -71,4 +71,12 @@ body {
 
 .log-out-button{
     padding-left: 0.5rem;
+}
+
+.user-name {
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 2rem;
 }

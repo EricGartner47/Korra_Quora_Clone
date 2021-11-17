@@ -79,11 +79,13 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
       if (passwordMatch) {
         loginUser(req, res, user);
         res.redirect('/questions');
+        return
       }
       else {
+
         const errors = []
         errors.push("Password incorrect.")
-        res.render('home', {
+        res.redirect('home', {
           title: 'Login',
           errors,
           csrfToken: req.csrfToken(),
@@ -91,15 +93,17 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
       }
     }
     else {
+      console.log('yes')
       const errors = []
       errors.push("Email")
-      res.render('home', {
+      res.redirect('home', {
         title: 'Login',
         errors,
         csrfToken: req.csrfToken(),
       });
     }
   } else {
+    console.log('hi')
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('home', {
       title: 'Login',
@@ -128,10 +132,10 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
     hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    res.render('questions');
+    res.redirect('/questions');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('signup', {
+    res.redirect('signup', {
       title: 'Signup',
       user,
       errors,
@@ -143,10 +147,17 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
 router.post('/demo', asyncHandler(async(req, res)=> {
   const user = await db.User.findOne({
     where: {email: 'demo@demo.com'}
-
   })
   loginUser(req, res, user)
-  res.render('questions')
+  res.redirect('/questions')
 }))
+
+router.get('/logout', (req, res) => {
+  //TO DO
+  delete req.session.auth
+  // res.redirect('/');
+  req.session.save(() => res.redirect('/'))
+})
+
 
 module.exports = router;

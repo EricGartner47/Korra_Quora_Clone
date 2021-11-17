@@ -8,7 +8,8 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const questionsRouter = require('./routes/questions');
-const sessionSecret = require('./config/index')
+const sessionSecret = require('./config/index').sessionSecret;
+
 const app = express();
 
 // view engine setup
