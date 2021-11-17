@@ -127,12 +127,14 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
   })
 
   const validatorErrors = validationResult(req);
-
+  console.log(validatorErrors);
   if (validatorErrors.isEmpty()) {
     hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    res.redirect('/questions');
+    loginUser(req, res, user)
+    req.session.save(() => res.redirect('/questions'))
+    return;
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.redirect('/signup', {
