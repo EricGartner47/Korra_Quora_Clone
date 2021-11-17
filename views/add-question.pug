@@ -1,0 +1,14 @@
+extends layout.pug
+block content
+    style
+        include ../public/stylesheets/add-question.css
+    body
+        nav.nav-container
+            a(href="/questions" class="logo") Korra
+            .search-container
+                i(class="fas fa-search")
+                input.search-input
+            .right-nav-container
+                a(href="/logout" class="log-out-button") Log Out
+        form(class="form-container" action="/questions/create" method="POST")
+            input(type='hidden' name='_csrf' value=csrfToken)

@@ -1,0 +1,75 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(238, 238, 236);
+}
+
+.nav-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 3rem;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+    position: absolute;
+    left: 0;
+    font-family: "Lobster";
+    text-decoration: none;
+    color:rgba(167, 2, 2, .9);
+    font-size:2rem;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+.search-container {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    padding: 0.4rem;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 0px 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.fa-search {
+    color:rgba(0, 0, 0, 0.7)
+}
+
+.right-nav-container {
+    right: 0;
+    padding: 1rem;
+    position: absolute;
+    font-family: "Lobster";
+    color:rgba(167, 2, 2, .9);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+
+.right-nav-container > a {
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 2rem;
+}
+
+.log-out-button{
+    padding-left: 0.5rem;
+}
