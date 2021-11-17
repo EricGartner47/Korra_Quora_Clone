@@ -23,8 +23,9 @@ html(lang="en")
         each question in questions
           .question
             h2= question.title
-            p= question.Topic.topic
+            p.question-topic= question.Topic.topic
             span= question.description
-            .question-button-container
-              a(href='' class="update-button") Edit
-              a(href='' class="delete-button") Delete
+            if(question.userId == user.id)
+              .question-button-container
+                a(href=`/questions/${question.id}/edit` class="update-button") Edit
+                a(href=`/questions/${question.id}/delete` class="delete-button") Delete

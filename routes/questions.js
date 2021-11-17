@@ -16,9 +16,10 @@ router.get('/', asyncHandler(async (req, res, next) => {
       }
     ]
   })
-  console.log(questions[0].Topic)
+  // console.log(questions[0].Topic)
   res.render('questions', { user, questions });
 }));
+
 router.get('/create', csrfProtection, asyncHandler(async (req, res, next) => {
   const topics = await db.Topic.findAll()
   res.render('add-question', { topics, csrfToken: req.csrfToken() });
@@ -59,6 +60,12 @@ router.post('/create', csrfProtection, questionValidators, asyncHandler(async (r
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('add-question', { errors, topics, csrfToken: req.csrfToken() })
   }
+}))
+
+router.get('/:id/delete', asyncHandler(async(req, res)=>{
+  const deleteQuestion = await db.Question.findByPk(req.params.id)
+  await deleteQuestion.destroy()
+  res.redirect('/questions');
 }))
 
 module.exports = router;
