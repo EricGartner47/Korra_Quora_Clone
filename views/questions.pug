@@ -19,3 +19,9 @@ html(lang="en")
           span(class="user-name") Welcome #{user.username}!
           a(href="/questions/create" class="add-question-button") Add Question
           a(href="/logout" class="log-out-button") Log Out
+      .question-list
+        each question in questions
+          .question
+            h2= question.title
+            //- p= question.topic
+            span= question.description
