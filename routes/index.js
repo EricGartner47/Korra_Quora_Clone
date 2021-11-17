@@ -116,7 +116,7 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
 }));
 
 router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
-  res.redirect('signup', { csrfToken: req.csrfToken() });
+  res.render('signup', { csrfToken: req.csrfToken() });
 }))
 
 router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req, res) => {
