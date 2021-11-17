@@ -135,7 +135,7 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
     res.redirect('/questions');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.redirect('signup', {
+    res.redirect('/signup', {
       title: 'Signup',
       user,
       errors,
