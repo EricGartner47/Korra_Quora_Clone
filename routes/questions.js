@@ -10,5 +10,8 @@ router.get('/', asyncHandler(async(req, res, next) => {
   // console.log('1234', req.session.auth)
   res.render('questions', {user});
 }));
+router.get('/create', asyncHandler(async(req, res, next) => {
+  res.render('add-question')
+}))
 
 module.exports = router;
