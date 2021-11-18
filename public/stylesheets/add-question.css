@@ -45,6 +45,14 @@ body {
     font-size:2rem;
     padding-left: 2rem;
     background-color: transparent;
+    /* transition: all 1s;  */
+}
+
+.logo:hover {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.1);
+    transition-property: opacity;
+    transition-duration: 180ms;
 }
 
 .search-container {
