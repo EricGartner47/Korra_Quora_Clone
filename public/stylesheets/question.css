@@ -31,11 +31,11 @@ body {
     background-color: transparent;
 }
 
-.logo:hover {
+/* .logo:hover {
     box-sizing: border-box;
     transition-property: opacity;
     transition-duration: 180ms;
-}
+} */
 
 .search-container {
     display: flex;
@@ -84,6 +84,10 @@ body {
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
+/* .dropdown:hover {
+    background-color: rgba(190, 190, 190, 0.3);
+    border-radius: 5px;
+} */
 .dropdown > * {
     text-decoration: none;
     color: rgba(167, 2, 2, .9);
