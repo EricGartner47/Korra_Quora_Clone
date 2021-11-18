@@ -1,0 +1,158 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: rgb(238, 238, 236);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 92vh;
+}
+.error-container {
+    margin: .5rem;
+    background-color: white;
+    border-left: 3px solid red;
+    padding: 1rem;
+    color: red;
+}
+.error-container > ul {
+    padding: 0rem .5rem;
+}
+.nav-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 3rem;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+    position: absolute;
+    left: 0;
+    font-family: "Lobster";
+    text-decoration: none;
+    color:rgba(167, 2, 2, .9);
+    font-size:2rem;
+    padding-left: 2rem;
+    background-color: transparent;
+}
+
+.search-container {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    padding: 0.4rem;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 0px 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.fa-search {
+    color:rgba(0, 0, 0, 0.7)
+}
+
+.right-nav-container {
+    right: 0;
+    padding: 1rem;
+    position: absolute;
+    font-family: "Lobster";
+    color:rgba(167, 2, 2, .9);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+
+.right-nav-container > a {
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 2rem;
+}
+
+.log-out-button{
+    padding-left: 0.5rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: white;
+    padding: 1.3rem;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+    height: fit-content;
+    width: fit-content;
+}
+.form-container > div {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.form-container > div > input {
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 3px;
+    width: 100%;
+    height: 2.5rem;
+    font-size: 1rem;
+    padding: .5rem;
+}
+.description-container > textarea {
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 3px;
+    width: 100%;
+    font-size: 1rem;
+    padding: .5rem;
+}
+.edit-question-button {
+    border: none;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 1.8rem;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(167, 2, 2, .8);
+    color: white;
+}
+.question-topics {
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 3px;
+    width: 100%;
+    font-size: 1rem;
+    padding: .5rem;
+}
+.edit-question-title {
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.4);
+    width: 100%;
+}
+.edit-question-container {
+    width: 100%;
+}
+.form-container > div > label {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 4px;
+}
+#title-input {
+    width: 30rem;
+}

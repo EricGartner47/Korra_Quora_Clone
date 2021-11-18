@@ -75,7 +75,7 @@ router.get('/:id/edit', csrfProtection, questionValidators, asyncHandler(async (
       model: db.Topic
     }]
   })
-  res.render('question-edit', { topics, csrfToken: req.csrfToken(), question });
+  res.render('edit-question', { topics, csrfToken: req.csrfToken(), question });
 }))
 
 router.post('/:id/edit', csrfProtection, questionValidators, asyncHandler(async (req, res) => {
@@ -95,7 +95,7 @@ router.post('/:id/edit', csrfProtection, questionValidators, asyncHandler(async 
     res.redirect('/questions')
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('add-question', { errors, topics, csrfToken: req.csrfToken() })
+    res.render('edit-question', { errors, topics, question, csrfToken: req.csrfToken() })
   }
 }))
 module.exports = router;
