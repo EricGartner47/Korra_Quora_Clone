@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     const button = document.querySelector('.create-answer')
     const container = document.querySelector('.container')
+    const answeresText = document.querySelector('#answers-Test')
     button.addEventListener('click', async (e) => {
         const form = document.querySelector('#answer-form')
         form.addEventListener("submit", (e) => {
@@ -25,6 +26,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         let resData = await res.json();
         let answersDiv = generateAnswerHtml(resData.message, content)
         insertAnswerTop(answersDiv, container)
+        answeresText.value = ''
         // const data = await res.json()
         // console.log(data)
         // if (data.message === "user created") {
