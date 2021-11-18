@@ -26,7 +26,7 @@ html(lang="en")
         each question in questions
           .question
             p.question-topic= question.Topic.topic
-            h2= question.title
+            h2: a(href=`questions/${question.id}`).question-title= question.title
             span= question.description
             if(question.userId == user.id)
               .question-button-container

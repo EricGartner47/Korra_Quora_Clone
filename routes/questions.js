@@ -62,6 +62,11 @@ router.post('/create', csrfProtection, questionValidators, asyncHandler(async (r
   }
 }))
 
+router.get('/:id', asyncHandler(async (req, res, next) => {
+  const question = await db.Question.findByPk(req.params.id)
+  res.render('question-single', {question})
+}))
+
 router.get('/:id/delete', asyncHandler(async (req, res) => {
   const deleteQuestion = await db.Question.findByPk(req.params.id)
   await deleteQuestion.destroy()
