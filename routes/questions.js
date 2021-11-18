@@ -63,7 +63,44 @@ router.post('/create', csrfProtection, questionValidators, asyncHandler(async (r
     res.render('add-question', { errors, topics, csrfToken: req.csrfToken() })
   }
 }))
+const answerValidators = [
+  check('content')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for title field')
+    .isLength({ max: 500 })
+    .withMessage('Title must not be more than 50 characters long'),
+];
 
+
+router.post('/:id/answers', answerValidators, asyncHandler(async (req, res) => {
+  const { content } = req.body;
+  const question = await db.Question.findByPk(req.params.id)
+  const user = await db.Question.findByPk(req.session.auth.userId)
+  console.log("=====================++++++++++++++++++++++++")
+  const validatorErrors = validationResult(req);
+  const newAnswer = db.Answer.build({
+    content,
+    questionId: question.id,
+    userId: user.id
+  });
+  console.log(newAnswer, "==============================================================")
+  // const question = await Question.findByPk(questionId);
+  if (validatorErrors.isEmpty()) {
+    await newAnswer.save();
+    console.log(newAnswer, "==============================================================")
+    res.json({ message: "user created" })
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    return res.render('single-question', {
+      title: 'Answer',
+      question,
+      user,
+      content,
+      errors,
+    });
+  }
+})
+);
 //Route to indivdual question
 router.get('/:id', asyncHandler(async (req, res, next) => {
   const question = await db.Question.findByPk(req.params.id, {
@@ -74,7 +111,6 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
     ]
   })
   const user = await db.User.findByPk(req.session.auth.userId)
-  console.log(question)
   res.render('single-question', { question, user })
 }))
 
@@ -117,42 +153,5 @@ router.post('/:id/edit', csrfProtection, questionValidators, asyncHandler(async 
     res.render('edit-question', { errors, topics, question, csrfToken: req.csrfToken() })
   }
 }))
-const answerValidators = [
-  check('content')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for title field')
-    .isLength({ max: 500 })
-    .withMessage('Title must not be more than 50 characters long'),
-];
-
-router.post(':id/answers', csrfProtection, answerValidators, asyncHandler(async (req, res) => {
-  const { content } = req.body;
-  const question = await db.Question.findByPk(req.params.id)
-  const user = await db.Question.findByPk(req.session.auth.userId)
-
-  const validatorErrors = validationResult(req);
-  const newAnswer = db.Answer.build({
-    content,
-    questionId: question.id,
-    userId: user.id
-  });
-  // const question = await Question.findByPk(questionId);
-  if (validatorErrors.isEmpty()) {
-    await newAnswer.save();
-    console.log(newAnswer, "==============================================================")
-    res.json({ message: "user created" })
-  } else {
-    const errors = validatorErrors.array().map((error) => error.msg);
-    return res.render('single-question', {
-      title: 'Answer',
-      question,
-      user,
-      content,
-      errors,
-      csrfToken: req.csrfToken(),
-    });
-  }
-})
-);
 
 module.exports = router;

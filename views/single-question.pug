@@ -31,7 +31,7 @@ block content
                     a(href=`/questions/${question.id}/edit` class="update-button") Edit
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
             .answers-Post
-                form(action=`question/${question.id}/answers`, method="post")
+                form(action=`/questions/${question.id}/answers`, method="post")
                     textarea(name="content", cols="100", rows="9" value=content)
                     button(id=question.id) Answer
             each answer in question.Answers
