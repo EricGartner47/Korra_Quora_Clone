@@ -105,9 +105,15 @@ body {
         background-color: rgba(0, 102, 255, .8);
         color: white;
 }
+
+.login-button:hover {
+    background-color: rgba(6, 80, 190, 0.8);
+}
+
 .sign-up {
     color: rgba(0, 0, 0, .6);
     padding: 1.25rem;
+    text-decoration: none;
 }
 .sign-up:hover {
     cursor: pointer;
@@ -146,6 +152,10 @@ body {
     cursor: pointer;
     bottom: .5em;
     z-index: 1;
+}
+
+.demo-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
 }
 
 .error-container {

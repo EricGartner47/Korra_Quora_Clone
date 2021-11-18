@@ -31,6 +31,12 @@ body {
     background-color: transparent;
 }
 
+.logo:hover {
+    box-sizing: border-box;
+    transition-property: opacity;
+    transition-duration: 180ms;
+}
+
 .search-container {
     display: flex;
     border: 1px solid rgba(0, 0, 0, 0.7);
@@ -124,6 +130,7 @@ body {
     height: fit-content;
     width: 100%;
 }
+
 .update-button {
     padding: 5px;
     background-color:rgba(167, 2, 2, .9);
@@ -131,6 +138,10 @@ body {
     border-radius: 3px;
     margin: 5px;
     text-decoration: none;
+}
+
+.update-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
 }
 
 .delete-button {
@@ -141,6 +152,11 @@ body {
     margin: 5px;
     text-decoration: none;
 }
+
+.delete-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
+}
+
 
 .question-topic {
     background-color: rgba(0, 102, 255, .8);
