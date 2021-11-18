@@ -16,6 +16,7 @@ html(lang="en")
                 ul
                 each error in errors
                     li= error
+            i: a(href="/" class="fa-solid fa-xmark")
         .sign-up-form
                 form.sign-up-container(action="/signup" method="POST")
                     label.sign-up-title Sign Up
