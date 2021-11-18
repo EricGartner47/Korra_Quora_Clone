@@ -8,7 +8,23 @@
 body {
     background-color: rgb(238, 238, 236);
 }
-
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 92vh;
+}
+.error-container {
+    margin: .5rem;
+    background-color: white;
+    border-left: 3px solid red;
+    padding: 1rem;
+    color: red;
+}
+.error-container > ul {
+    padding: 0rem .5rem;
+}
 .nav-container {
     display: flex;
     position: relative;
@@ -80,12 +96,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
-    padding: 2rem;
+    padding: 1.3rem;
     border-radius: 4px;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
     height: fit-content;
