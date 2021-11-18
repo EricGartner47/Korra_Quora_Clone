@@ -169,3 +169,8 @@ body {
     width: fit-content;
     color: white;
 }
+
+.question-title{
+    text-decoration: none;
+    color: black;
+}
