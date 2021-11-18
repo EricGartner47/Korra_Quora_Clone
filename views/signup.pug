@@ -17,7 +17,6 @@ html(lang="en")
                     ul
                     each error in errors
                         li= error
-                i: a(href="/" class="fa-solid fa-xmark")
             .sign-up-form
                     form.sign-up-container(action="/signup" method="POST")
                         label.sign-up-title Sign Up
@@ -35,5 +34,5 @@ html(lang="en")
                             label.confirm-password(for='confirmPassword') Confirm Password
                             input.confirm-password-input(name='confirmPassword' type='password')
                         .pass-login-container
-                            button.login-button Sign Up
+                            button.signup-button Sign Up
                         i: a(href="/" class="fa-solid fa-xmark")

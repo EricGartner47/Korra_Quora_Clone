@@ -31,11 +31,12 @@ body {
     background-color: transparent;
 }
 
-/* .logo:hover {
+.logo:hover {
     box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.1);
     transition-property: opacity;
     transition-duration: 180ms;
-} */
+}
 
 .search-container {
     display: flex;
