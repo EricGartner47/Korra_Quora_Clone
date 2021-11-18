@@ -134,6 +134,28 @@ body {
     margin: 10px;
     border-radius: 3px;
 }
+.answers {
+    position: relative;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 10%);
+    height: fit-content;
+    overflow-wrap: break-word;
+    width: 60%;
+    margin: 10px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.answers-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: fit-content;
+    width: 100%;
+    bottom: 0;
+}
 
 .question-button-container{
     display: flex;

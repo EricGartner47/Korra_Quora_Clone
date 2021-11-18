@@ -72,23 +72,24 @@ const answerValidators = [
 ];
 
 
-router.post('/:id/answers', answerValidators, asyncHandler(async (req, res) => {
+router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
   const { content } = req.body;
   const question = await db.Question.findByPk(req.params.id)
-  const user = await db.Question.findByPk(req.session.auth.userId)
-  console.log("=====================++++++++++++++++++++++++")
+  const user = await db.User.findByPk(req.session.auth.userId)
+  console.log(user, "=====================++++++++++++++++++++++++")
   const validatorErrors = validationResult(req);
   const newAnswer = db.Answer.build({
     content,
     questionId: question.id,
     userId: user.id
   });
-  console.log(newAnswer, "==============================================================")
+  console.log(validatorErrors)
+  console.log(req.body)
   // const question = await Question.findByPk(questionId);
   if (validatorErrors.isEmpty()) {
     await newAnswer.save();
     console.log(newAnswer, "==============================================================")
-    res.json({ message: "user created" })
+    res.json({ message: newAnswer.id })
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     return res.render('single-question', {

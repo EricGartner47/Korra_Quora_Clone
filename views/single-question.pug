@@ -3,6 +3,7 @@ extends layout.pug
 block content
     style
         include ../public/stylesheets/single-question.css
+    script(src="/javascripts/answers.js" type="module")
     body
         nav.nav-container
             a(href="/questions" class="logo") Korra
@@ -31,13 +32,13 @@ block content
                     a(href=`/questions/${question.id}/edit` class="update-button") Edit
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
             .answers-Post
-                form(action=`/questions/${question.id}/answers`, method="post")
+                form(action=`/questions/${question.id}/answer`, method="post" id="answer-form")
                     textarea(name="content", cols="100", rows="9" value=content)
-                    button(id=question.id) Answer
+                    button(class='create-answer' id=question.id) Answer
             each answer in question.Answers
                 .answers
                     span= answer.content
                     if(question.userId == user.id)
-                      .question-button-container
-                        a(href=`/questions/${question.id}/edit` class="update-button") Edit
-                        a(href=`/questions/${question.id}/delete` class="delete-button") Delete
+                      .answers-button-container
+                        a(href=`/answers/${answer.id}/edit` class="update-button") Edit
+                        a(href=`/answers/${answer.id}/delete` class="delete-button") Delete
