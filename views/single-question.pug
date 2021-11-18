@@ -1,0 +1,43 @@
+extends layout.pug
+
+block content
+    style
+        include ../public/stylesheets/single-question.css
+    body
+        nav.nav-container
+            a(href="/questions" class="logo") Korra
+            .search-container
+              i(class="fas fa-search")
+              input.search-input
+            .right-nav-container
+              .click-container
+                span(class="user-name") #{user.username.toUpperCase()}
+                span.x: i(class="fa-solid fa-angle-down")
+            .dropdown
+              a(href="/questions/create" class="add-question-button") Add Question
+              a(href="/logout" class="log-out-button") Log Out
+        .container
+            if errors
+                .error-container
+                    ul
+                        each error in errors
+                            li= error
+            .question
+                p.question-topic= question.Topic.topic
+                h2.question-title= question.title
+                span= question.description
+                if(question.userId == user.id)
+                  .question-button-container
+                    a(href=`/questions/${question.id}/edit` class="update-button") Edit
+                    a(href=`/questions/${question.id}/delete` class="delete-button") Delete
+            .answers-Post
+                form(action=`question/${question.id}/answers`, method="post")
+                    textarea(name="content", cols="100", rows="9" value=content)
+                    button(id=question.id) Answer
+            each answer in question.Answers
+                .answers
+                    span= answer.content
+                    if(question.userId == user.id)
+                      .question-button-container
+                        a(href=`/questions/${question.id}/edit` class="update-button") Edit
+                        a(href=`/questions/${question.id}/delete` class="delete-button") Delete

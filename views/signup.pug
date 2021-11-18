@@ -12,27 +12,27 @@ html(lang="en")
     body
         .container
             if errors
-                .error-container
-                    p The following error(s) occurred:
-                    ul
-                    each error in errors
-                        li= error
+               .error-container
+                   p The following error(s) occurred:
+                   ul
+                   each error in errors
+                       li= error
             .sign-up-form
-                    form.sign-up-container(action="/signup" method="POST")
-                        label.sign-up-title Sign Up
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        .sign-up-email
-                            label.email(for='email') Email
-                            input.email-input(name='email' type='email')
-                        .sign-up-username
-                            label.username(for='username') Username
-                            input.username-input(name='username' type='text')
-                        .password-container
-                            label.password(for='password') Password
-                            input.password-input(name='password' type='password')
-                        .confirm-password-container
-                            label.confirm-password(for='confirmPassword') Confirm Password
-                            input.confirm-password-input(name='confirmPassword' type='password')
-                        .pass-login-container
-                            button.signup-button Sign Up
-                        i: a(href="/" class="fa-solid fa-xmark")
+                   form.sign-up-container(action="/signup" method="POST")
+                       label.sign-up-title Sign Up
+                       input(type='hidden' name='_csrf' value=csrfToken)
+                       .sign-up-email
+                           label.email(for='email') Email
+                           input.email-input(name='email' type='email')
+                       .sign-up-username
+                           label.username(for='username') Username
+                           input.username-input(name='username' type='text')
+                       .password-container
+                           label.password(for='password') Password
+                           input.password-input(name='password' type='password')
+                       .confirm-password-container
+                           label.confirm-password(for='confirmPassword') Confirm Password
+                           input.confirm-password-input(name='confirmPassword' type='password')
+                       .pass-login-container
+                           button.signup-button Sign Up
+                       i: a(href="/" class="fa-solid fa-xmark")
