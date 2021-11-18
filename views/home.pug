@@ -4,39 +4,40 @@ block content
     style
         include ../public/stylesheets/index.css
     body
-        .form-container
-            .title-container
-                p.title Korra
-                span.sub-title A place to share knowledge and better understand the world
-                if errors
-                    .error-container
-                        ul
-                            each error in errors
-                                li= error
-            form.login-container(action="/login" method="POST")
-                input(type='hidden' name='_csrf' value=csrfToken)
-                label.login Login
-                .email-container
-                    label.email(for='email') Email
-                    input.email-input(name='email' type='email')
-                .password-container
-                    label.password(for='password') Password
-                    input.password-input(name='password' type='password')
-                .pass-login-container
-                    button.login-button Login
-                    a(href="/signup").sign-up Sign up with email
-
-            .footer
-                ul.created-by
-                    li Created by:
-                    li: a(href="https://github.com/jburnt17") Jared Burnett
-                    li: a(href="https://github.com/depash") Depash Nepal
-                    li: a(href="https://github.com/droid97") Andres Aguilar-Garcia
-                    li: a(href="https://github.com/EricGartner47") Eric Gartner
-                form(action="/demo" method="POST")
-                    button.demo-button Demo User
+        .container
+            if errors
+                .error-container
+                    ul
+                        each error in errors
+                            li= error
+            .form-container
+                .title-container
+                    p.title Korra
+                    span.sub-title A place to share knowledge and better understand the world
+                form.login-container(action="/login" method="POST")
                     input(type='hidden' name='_csrf' value=csrfToken)
-                .footer-links
-                    li © Korra, Inc. 2021
+                    label.login Login
+                    .email-container
+                        label.email(for='email') Email
+                        input.email-input(name='email' type='email')
+                    .password-container
+                        label.password(for='password') Password
+                        input.password-input(name='password' type='password')
+                    .pass-login-container
+                        button.login-button Login
+                        a(href="/signup").sign-up Sign up with email
+
+                .footer
+                    ul.created-by
+                        li Created by:
+                        li: a(href="https://github.com/jburnt17") Jared Burnett
+                        li: a(href="https://github.com/depash") Depash Nepal
+                        li: a(href="https://github.com/droid97") Andres Aguilar-Garcia
+                        li: a(href="https://github.com/EricGartner47") Eric Gartner
+                    form(action="/demo" method="POST")
+                        button.demo-button Demo User
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                    .footer-links
+                        li © Korra, Inc. 2021
     script(src="home.js" type="module")
     script(src="test.js" type="module")
