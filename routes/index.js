@@ -9,11 +9,12 @@ const bcrypt = require('bcryptjs');
 const { isTemplateLiteral } = require('babel-types');
 // const { ValidationError } = require('sequelize/types');
 
-/* GET home page. */
+//Route for splash/login page
 router.get('/', csrfProtection, function (req, res, next) {
   res.render('home', { csrfToken: req.csrfToken() });
 });
 
+//Signup Validators
 const signupValidation = [
   check("username")
     .exists({ checkFalsy: true })
@@ -53,7 +54,7 @@ const signupValidation = [
     }),
 ]
 
-
+//login validators
 const loginValidations = [
   check("email")
     .exists({ checkFalsy: true })
@@ -65,6 +66,7 @@ const loginValidations = [
     .withMessage("Please provide a valid password")
 ]
 
+//Route to login a User
 router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req, res) => {
   let { email, password } = req.body
   let user = await db.User.findOne({
@@ -113,10 +115,12 @@ router.post('/login', csrfProtection, loginValidations, asyncHandler(async (req,
 
 }));
 
+//Route to render Signup page
 router.get('/signup', csrfProtection, asyncHandler(async (req, res) => {
   res.render('signup', { csrfToken: req.csrfToken() });
 }))
 
+//Route to create a new User
 router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req, res) => {
   const { email, username, password } = req.body
   const user = db.User.build({
@@ -143,6 +147,7 @@ router.post('/signup', signupValidation, csrfProtection, asyncHandler(async (req
   }
 }))
 
+//Demo user login
 router.post('/demo', asyncHandler(async (req, res) => {
   const user = await db.User.findOne({
     where: { email: 'demo@demo.com' }
@@ -151,6 +156,7 @@ router.post('/demo', asyncHandler(async (req, res) => {
   req.session.save(() => res.redirect('/questions'))
 }))
 
+//Logout button
 router.get('/logout', (req, res) => {
   //TO DO
   delete req.session.auth
