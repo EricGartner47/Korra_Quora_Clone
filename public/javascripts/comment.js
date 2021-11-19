@@ -11,12 +11,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
         // console.log('hello')
         const formData = new FormData(form)
         const content = formData.get('content')
-        const questionId = e.target.id
+        const answerId = e.target.id
         // console.log(questionId)
         const data = {
             content
         }
-        const res = await fetch(`/questions/${questionId}/answer`, {
+        const res = await fetch(`/answer/${answerId}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

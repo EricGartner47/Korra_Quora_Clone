@@ -45,17 +45,47 @@ router.post('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(re
 //API endpoint for deleting an answer to a question
 router.delete('/:id/delete', asyncHandler(async (req, res) => {
   const answer = await db.Answer.findByPk(req.params.id);
+  // const comments = await db.Comment.findAll({
+  //   where: { answerId: answer.id}
+  // })
+  console.log(comments)
+  // await comments.destroy();
   await answer.destroy();
   return res.json({ message: req.params.id });
   })
 );
 
-router.get('/:id/comment', asyncHandler(async(req, res) => {
+router.get('/:id', asyncHandler(async (req, res, next) => {
   const answer = await db.Answer.findByPk(req.params.id, {
-    include: [{
-      model: db.Comment
-    }]
-  });
-  res.render('comments', {answer})
+    include: [{ model: db.Comment }]
+  })
+  const user = await db.User.findByPk(req.session.auth.userId)
+  res.render('single-answer', { answer, user })
 }))
+
+// router.post('/:id/comment/', answerValidators, asyncHandler(async (req, res) => {
+//   const { content } = req.body;
+//   const answer = await db.Answer.findByPk(req.params.id)
+//   const user = await db.User.findByPk(req.session.auth.userId)
+//   const validatorErrors = validationResult(req);
+//   const newComment = db.Comment.build({
+//     content,
+//     answerId: answer.id,
+//     userId: user.id
+//   });
+//   if (validatorErrors.isEmpty()) {
+//     await newComment.save();
+//     res.json({ message: newComment.id })
+//   } else {
+//     const errors = validatorErrors.array().map((error) => error.msg);
+//     return res.render('single-question', {
+//       title: 'Answer',
+//       question,
+//       user,
+//       content,
+//       errors,
+//     });
+//   }
+// })
+// );
 module.exports = router;
