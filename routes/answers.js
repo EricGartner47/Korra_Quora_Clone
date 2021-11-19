@@ -16,7 +16,9 @@ const answerValidators = [
 ];
 
 //API endpoint for editing an answer to a question
-router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
+router.put('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
+  const answerId = parseInt(req.params.id, 10)
+  console.log(answerId, 'hello')
   const answerToUpdate = await db.Answer.findByPk(answerId);
   const { content } = req.body;
   const newAnswer = {
@@ -26,12 +28,12 @@ router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
   const validatorErrors = validationResult(req);
   if (validatorErrors.isEmpty()) {
     await answerToUpdate.update(newAnswer);
-    res.json()
+    res.json({message: answerId})
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     return res.render('answer-edit', {
-      title: `Edit Answer ${answer.id}`,
-      answer,
+      title: `Edit Answer`,
+      answer: {newAnswer, id: answerId },
       errors,
       csrfToken: req.csrfToken(),
     });
