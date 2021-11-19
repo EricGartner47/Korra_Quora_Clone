@@ -29,8 +29,8 @@ const questionValidators = [
   check('title')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a title for your question')
-    .isLength({ max: 500 })
-    .withMessage('Title must not be more than 500 characters long'),
+    .isLength({ max: 250 })
+    .withMessage('Title must not be more than 250 characters long'),
   check('description')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a description for your question')
@@ -69,7 +69,7 @@ const answerValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for title field')
     .isLength({ max: 500 })
-    .withMessage('Title must not be more than 50 characters long'),
+    .withMessage('Title must not be more than 500 characters long'),
 ];
 
 router.get("/:id([a-zA-Z]+)", asyncHandler(async (req, res) => {
@@ -98,8 +98,6 @@ router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
     questionId: question.id,
     userId: user.id
   });
-  console.log(validatorErrors)
-  console.log(req.body)
   // const question = await Question.findByPk(questionId);
   if (validatorErrors.isEmpty()) {
     await newAnswer.save();
