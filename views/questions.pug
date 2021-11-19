@@ -37,7 +37,7 @@ html(lang="en")
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
         else
           .question-list
-            h2 There are no questions with that topic.
+            h2(class="noQuestionErr") There are no matches.
         .Topics
           each topic in topics
             .topic-contianer
