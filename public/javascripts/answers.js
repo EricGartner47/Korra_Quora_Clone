@@ -97,22 +97,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
             arrayContainer[0].remove()
         })
     })
-    const editAnswerButton = document.querySelectorAll('.answer-update-button')
-    // console.log(editAnswerButton)
-    editAnswerButton.forEach(button => {
-        button.addEventListener('click', async (e)=> {
-            e.preventDefault()
-            const answerId = e.target.id
-            const formData = new FormData(form)
-            const content = formData.get('content')
-            const data = {
-                content
-            }
-            // console.log(content)
-            const res = await fetch(`answer/${answerId}/edit`, {
-                method: 'PUT',
-                body: JSON.stringify(data)
-            })
-        })
-    })
+    
 })

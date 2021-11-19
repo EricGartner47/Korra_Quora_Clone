@@ -1,0 +1,27 @@
+extends layout.pug
+block content
+    style
+        include ../public/stylesheets/edit-answer.css
+    body
+        nav.nav-container
+            a(href="/questions" class="logo") Korra
+            .search-container
+                i(class="fas fa-search")
+                input.search-input
+            .right-nav-container
+                a(href="/logout" class="log-out-button") Log Out
+        .container
+            if errors
+                .error-container
+                    ul
+                        each error in errors
+                            li= error
+            form(class="form-container" action=`/answers/${answer.id}/edit` method="POST")
+                input(type='hidden' name='_csrf' value=csrfToken)
+                .edit-answer-container
+                    label.edit-question-title Edit Your Answer
+                .content-container
+                    label(for="content") Your Answer
+                    textarea(name="content", cols="80", rows="8" )= answer.content
+                .submit-answer-container
+                    button(class="edit-answer-button" type='submit') Edit Answer
