@@ -46,4 +46,13 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
   return res.json({message: req.params.id});
   })
 );
+
+router.get('/:id/comment', asyncHandler(async(req, res) => {
+  const answer = await db.Answer.findByPk(req.params.id, {
+    include: [{
+      model: db.Comment
+    }]
+  });
+  res.render('comments', {answer})
+}))
 module.exports = router;
