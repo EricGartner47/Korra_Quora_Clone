@@ -72,11 +72,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
             aEdit.innerText = "Edit"
             aDelete.innerText = "Delete"
             span.innerText = content
+            aComment.innerText = "Comment"
             answersDiv.appendChild(span)
             span.appendChild(answersButtionDiv)
+            answersButtionDiv.appendChild(aComment)
             answersButtionDiv.appendChild(aEdit)
             answersButtionDiv.appendChild(aDelete)
-            answersButtionDiv.appendChild(aComment)
             return answersDiv
         // container.appendChild(answersDiv)
     }
@@ -102,5 +103,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
             arrayContainer[0].remove()
         })
     })
-    
+
 })
