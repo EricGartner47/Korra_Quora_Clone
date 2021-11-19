@@ -16,8 +16,9 @@ router.get('/', asyncHandler(async (req, res, next) => {
       }
     ]
   })
+  const topics = await db.Topic.findAll()
   // console.log(questions[0].Topic)
-  res.render('questions', { user, questions });
+  res.render('questions', { user, questions, topics });
 }));
 
 //Question Validators for adding a new question

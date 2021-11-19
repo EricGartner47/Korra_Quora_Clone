@@ -22,14 +22,18 @@ html(lang="en")
         .dropdown
           a(href="/questions/create" class="add-question-button") Add Question
           a(href="/logout" class="log-out-button") Log Out
-      .question-list
-        each question in questions
-          .question
-            p.question-topic= question.Topic.topic
-            h2: a(href=`questions/${question.id}`).question-title= question.title
-            span= question.description
-            if(question.userId == user.id)
-              .question-button-container
-                a(href=`/questions/${question.id}/edit` class="update-button") Edit
-                a(href=`/questions/${question.id}/delete` class="delete-button") Delete
-
+      #questionandtopics
+        .question-list
+          each question in questions
+            .question
+              p.question-topic= question.Topic.topic
+              h2: a(href=`questions/${question.id}`).question-title= question.title
+              span= question.description
+              if(question.userId == user.id)
+                .question-button-container
+                  a(href=`/questions/${question.id}/edit` class="update-button") Edit
+                  a(href=`/questions/${question.id}/delete` class="delete-button") Delete
+        .Topics
+          each topic in topics
+            .topic-contianer
+              a(href=`/questions/${topic.topic}`)= topic.topic
