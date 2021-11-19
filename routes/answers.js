@@ -5,45 +5,49 @@ const { check, validationResult } = require('express-validator')
 const db = require('../db/models')
 
 const answerValidators = [
-  check('title')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for title field')
-    .isLength({ max: 500 })
-    .withMessage('Title must not be more than 50 characters long'),
-  check('answer')
+  check('content')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for answer field'),
 ];
 
-//API endpoint for editing an answer to a question
-router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
-  const answerToUpdate = await db.Answer.findByPk(answerId);
-  const { content } = req.body;
-  const newAnswer = {
-    content,
-    questionId,
-  };
+//Route to render edit answer page
+router.get('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req,res)=> {
+  const answer = await db.Answer.findByPk(req.params.id)
+  res.render('edit-answer', {answer, csrfToken: req.csrfToken()})
+}))
+
+//Route to edit answer
+router.post('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req, res) => {
+  // console.log('hello')
+  const user = await db.User.findByPk(req.session.auth.userId);
+  const answer = await db.Answer.findByPk(req.params.id, {
+    include: [db.Question]
+    },
+  )
+  const {content} = req.body
   const validatorErrors = validationResult(req);
+  const questionId = answer.Question.id;
   if (validatorErrors.isEmpty()) {
-    await answerToUpdate.update(newAnswer);
-    res.json()
+    const newAnswer = await answer.update({
+      content,
+      questionId: answer.Question.id,
+      userId: user.id
+    });
+    await newAnswer.save()
+    res.redirect(`/questions/${questionId}`)
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    return res.render('answer-edit', {
-      title: `Edit Answer ${answer.id}`,
-      answer,
-      errors,
-      csrfToken: req.csrfToken(),
-    });
+    res.render('edit-answer', { errors, content, questionId, answer, csrfToken: req.csrfToken() })
   }
-})
-);
+
+}))
 
 //API endpoint for deleting an answer to a question
 router.delete('/:id/delete', asyncHandler(async (req, res) => {
   const answer = await db.Answer.findByPk(req.params.id);
   await answer.destroy();
   return res.json({ message: req.params.id });
-})
+  })
 );
+//test
 module.exports = router;

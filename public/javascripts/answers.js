@@ -97,4 +97,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
             arrayContainer[0].remove()
         })
     })
+    
 })
