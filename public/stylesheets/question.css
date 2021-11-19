@@ -23,6 +23,10 @@ body {
     transition: background-color .5s;
 }
 
+.fa-search:hover{
+    cursor: pointer;
+}
+
 .topic-contianer:hover{
     background-color: rgba(198, 217, 245, 0.8);
 }

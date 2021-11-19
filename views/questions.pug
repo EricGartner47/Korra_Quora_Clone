@@ -8,14 +8,14 @@ html(lang="en")
         link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" type="text/css")
         script(src="https://kit.fontawesome.com/560409b863.js" crossorigin="anonymous")
         script(src="/javascripts/index.js" type="module")
-        script(src="/javascripts/search.js")
         title Korra
     body
       nav.nav-container
         a(href="/questions" class="logo") Korra
-        .search-container
-          i(class="fas fa-search")
-          input.search-input
+        form(class="search-container" action="/search/", method="post")
+          input(name="value" ).search-input
+          button(type="submit")
+            i(class="fas fa-search")
         .right-nav-container
           .click-container
             span(class="user-name") #{user.username.toUpperCase()}

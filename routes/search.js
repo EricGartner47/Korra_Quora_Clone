@@ -9,16 +9,18 @@ const { Op } = require('sequelize');
 router.post('/', async (req, res) => {
     const user = await db.User.findByPk(req.session.auth.userId)
     const { value } = req.body
-    console.log(value, "++++++++++++++++++++++++++++", user)
-    const questions = await db.Questions.findAll({
+    const questions = await db.Question.findAll({
         where: {
             title: { [Op.iLike]: `%${value}%` }
         },
-        order: ['createdAt', 'DESC'],
-        limit: 15
+        order: [['createdAt', 'DESC']],
+        limit: 15,
+        include: [
+            {
+                model: db.Topic
+            }
+        ]
     });
-    console.log(value, "++++++++++++++++++++++++++++")
-    console.log(questions, "======================")
     const topics = await db.Topic.findAll()
     res.render('questions', { user, questions, topics });
 })
