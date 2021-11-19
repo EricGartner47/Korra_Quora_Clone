@@ -12,9 +12,10 @@ html(lang="en")
     body
       nav.nav-container
         a(href="/questions" class="logo") Korra
-        .search-container
-          i(class="fas fa-search")
-          input.search-input
+        form(class="search-container" action="/search/", method="post")
+          input(name="value" ).search-input
+          button(type="submit")
+            i(class="fas fa-search")
         .right-nav-container
           .click-container
             span(class="user-name") #{user.username.toUpperCase()}
@@ -36,7 +37,7 @@ html(lang="en")
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
         else
           .question-list
-            h2 There are no questions with that topic.
+            h2(class="noQuestionErr") There are no matches.
         .Topics
           each topic in topics
             .topic-contianer
