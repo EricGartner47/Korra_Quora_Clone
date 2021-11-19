@@ -33,7 +33,7 @@ block content
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
             .answers-Post
                 form(action=`/questions/${question.id}/answer`, method="post" id="answer-form")
-                    textarea(id="answers-Test" name="content", cols="100", rows="9" value=content)
+                    textarea(placeholder="Leave your answer." id="answers-Test" name="content", cols="100", rows="9" value=content)
                     button(class='create-answer' id=question.id) Answer
             each answer in question.Answers
                 .answers(class=answer.id)

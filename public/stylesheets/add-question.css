@@ -57,10 +57,12 @@ body {
 
 .search-container {
     display: flex;
-    border: 1px solid rgba(0, 0, 0, 0.7);
-    padding: 0.4rem;
+    /* border: 1px solid rgba(0, 0, 0, 0.7); */
     width: 50%;
-    border-radius: 4px;
+    border-radius: 1.5rem;
+    background-color: white;
+    padding: 0.5rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .search-input {
@@ -72,7 +74,7 @@ body {
 }
 
 .fa-search {
-    color:rgba(0, 0, 0, 0.7)
+    color:rgba(0, 0, 0, 0.5)
 }
 
 .right-nav-container {
