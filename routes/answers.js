@@ -50,12 +50,13 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
   })
 );
 
-router.get('/:id/comment', asyncHandler(async(req, res) => {
+router.get('/:id', asyncHandler(async(req, res) => {
   const answer = await db.Answer.findByPk(req.params.id, {
     include: [{
       model: db.Comment
     }]
   });
-  res.render('comments', {answer})
+  const user = await db.User.findByPk(req.session.auth.userId)
+  res.render('single-answer', {answer, user})
 }))
 module.exports = router;
