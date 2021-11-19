@@ -50,7 +50,6 @@ body {
 .sign-up-container {
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
     justify-content: space-evenly;
     height: 90%;
     width: 80%;
@@ -104,6 +103,7 @@ body {
 
 .signup-button:hover{
     background-color: rgba(3, 83, 204, 0.8);
+    transition: background-color .5s;
 }
 
 .error-container {
