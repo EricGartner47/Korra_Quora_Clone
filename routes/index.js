@@ -4,10 +4,9 @@ const { csrfProtection, asyncHandler } = require('./utils')
 const db = require('../db/models')
 const { loginUser } = require('../auth');
 const { check, validationResult } = require('express-validator');
-// const { handleValidationErrors } = require('../auth')
 const bcrypt = require('bcryptjs');
 const { isTemplateLiteral } = require('babel-types');
-// const { ValidationError } = require('sequelize/types');
+
 
 //Route for splash/login page
 router.get('/', csrfProtection, function (req, res, next) {
@@ -158,9 +157,7 @@ router.post('/demo', asyncHandler(async (req, res) => {
 
 //Logout button
 router.get('/logout', (req, res) => {
-  //TO DO
   delete req.session.auth
-  // res.redirect('/');
   req.session.save(() => res.redirect('/'))
 })
 

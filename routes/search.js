@@ -25,13 +25,5 @@ router.post('/', async (req, res) => {
     res.render('questions', { user, questions, topics });
 })
 
-// router.all('/search/:searchTerm', asyncHandler(async (req, res) => {
-//     const searchData = req.params.searchTerm;
-//     const questions = await searchRepo.searchQuestions(`%${searchData}%`);
-//     return res.render('search-result', {
-//         listTitle: 'Search Results',
-//         questions,
-//     })
-// })
-// )
+
 module.exports = router;

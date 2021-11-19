@@ -18,7 +18,6 @@ router.get('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req
 
 //Route to edit answer
 router.post('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req, res) => {
-  // console.log('hello')
   const user = await db.User.findByPk(req.session.auth.userId);
   const answer = await db.Answer.findByPk(req.params.id, {
     include: [db.Question]
