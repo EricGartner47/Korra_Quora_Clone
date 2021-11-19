@@ -8,7 +8,7 @@ const answerValidators = [
   check('title')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for title field')
-    .isLength({ max: 50 })
+    .isLength({ max: 500 })
     .withMessage('Title must not be more than 50 characters long'),
   check('answer')
     .exists({ checkFalsy: true })
@@ -43,7 +43,7 @@ router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
 router.delete('/:id/delete', asyncHandler(async (req, res) => {
   const answer = await db.Answer.findByPk(req.params.id);
   await answer.destroy();
-  return res.json({message: req.params.id});
-  })
+  return res.json({ message: req.params.id });
+})
 );
 module.exports = router;

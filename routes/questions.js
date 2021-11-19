@@ -16,8 +16,9 @@ router.get('/', asyncHandler(async (req, res, next) => {
       }
     ]
   })
+  const topics = await db.Topic.findAll()
   // console.log(questions[0].Topic)
-  res.render('questions', { user, questions });
+  res.render('questions', { user, questions, topics });
 }));
 
 //Question Validators for adding a new question
@@ -28,8 +29,8 @@ const questionValidators = [
   check('title')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a title for your question')
-    .isLength({ max: 500 })
-    .withMessage('Title must not be more than 500 characters long'),
+    .isLength({ max: 250 })
+    .withMessage('Title must not be more than 250 characters long'),
   check('description')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a description for your question')
@@ -68,9 +69,22 @@ const answerValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for title field')
     .isLength({ max: 500 })
-    .withMessage('Title must not be more than 50 characters long'),
+    .withMessage('Title must not be more than 500 characters long'),
 ];
 
+router.get("/:id([a-zA-Z]+)", asyncHandler(async (req, res) => {
+  const user = await db.User.findByPk(req.session.auth.userId)
+  const questions = await db.Question.findAll({
+    include: [
+      {
+        model: db.Topic,
+        where: { topic: req.params.id }
+      }
+    ]
+  })
+  const topics = await db.Topic.findAll()
+  res.render('questions', { user, questions, topics });
+}))
 
 router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
   const { content } = req.body;
@@ -83,8 +97,6 @@ router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
     questionId: question.id,
     userId: user.id
   });
-  console.log(validatorErrors)
-  console.log(req.body)
   // const question = await Question.findByPk(questionId);
   if (validatorErrors.isEmpty()) {
     await newAnswer.save();
