@@ -82,7 +82,6 @@ router.get("/:id([a-zA-Z]+)", asyncHandler(async (req, res) => {
       }
     ]
   })
-  console.log(questions)
   const topics = await db.Topic.findAll()
   res.render('questions', { user, questions, topics });
 }))
