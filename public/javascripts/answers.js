@@ -1,58 +1,78 @@
 window.addEventListener('DOMContentLoaded', (e) => {
-    const button = document.querySelector('.create-answer')
+    const addAnswerButton = document.querySelector('.create-answer')
     const container = document.querySelector('.container')
     const answeresText = document.querySelector('#answers-Test')
-    button.addEventListener('click', async (e) => {
+    addAnswerButton.addEventListener('click', async (e) => {
         const form = document.querySelector('#answer-form')
         form.addEventListener("submit", (e) => {
             e.preventDefault()
         })
         e.preventDefault()
-        console.log('hello')
+        // console.log('hello')
         const formData = new FormData(form)
         const content = formData.get('content')
-        let questionId = e.target.id
-        console.log(questionId)
+        const questionId = e.target.id
+        // console.log(questionId)
         const data = {
             content
         }
         const res = await fetch(`/questions/${questionId}/answer`, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
-        let resData = await res.json();
+        const resData = await res.json();
         let answersDiv = generateAnswerHtml(resData.message, content)
         insertAnswerTop(answersDiv, container)
+        const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
+        deleteAnswerButton.forEach(button => {
+            button.addEventListener('click', async (e)=> {
+                e.preventDefault()
+                const answerId = e.target.id
+                const res = await fetch(`/answers/${answerId}/delete`, {
+                    method: 'DELETE'
+                })
+                let resData = await res.json()
+                const container = document.getElementsByClassName(resData.message)
+                let arrayContainer = Array.from(container)
+                arrayContainer[0].remove()
+
+            })
+        })
         answeresText.value = ''
         // const data = await res.json()
         // console.log(data)
         // if (data.message === "user created") {
-        //     console.log('we did it')
-        // }
-    })
-    const generateAnswerHtml = (id, content) => {
-        const answersDiv = document.createElement('div')
-        answersDiv.className = 'answers'
-        const answersButtionDiv = document.createElement('div')
-        answersButtionDiv.className = 'answers-button-container'
-        const span = document.createElement('span')
-        const aEdit = document.createElement('a')
-        const aDelete = document.createElement('a')
-        aEdit.href = `/answers/${id}/edit`
-        aDelete.href = `/answers/${id}/delete`
-        aEdit.className = "update-button"
-        aDelete.className = "delete-button"
-        aEdit.innerText = "Edit"
-        aDelete.innerText = "Delete"
-        span.innerText = content
-        answersDiv.appendChild(span)
-        span.appendChild(answersButtionDiv)
-        answersButtionDiv.appendChild(aEdit)
-        answersButtionDiv.appendChild(aDelete)
-        return answersDiv
+            //     console.log('we did it')
+            // }
+        })
+        const generateAnswerHtml = (id, content) => {
+            const answersDiv = document.createElement('div')
+            // answersDiv.className = ('answers', id)
+            answersDiv.classList.add('answers', id);
+
+            // answersDiv.className = 'answers'
+            const answersButtionDiv = document.createElement('div')
+            answersButtionDiv.className = 'answers-button-container'
+            const span = document.createElement('span')
+            const aEdit = document.createElement('a')
+            const aDelete = document.createElement('a')
+            aEdit.href = `/answers/${id}/edit`
+            aDelete.href = `/answers/${id}/delete`
+            aEdit.className = "answer-update-button"
+            aDelete.className = "answer-delete-button"
+            aEdit.id = id
+            aDelete.id = id
+            aEdit.innerText = "Edit"
+            aDelete.innerText = "Delete"
+            span.innerText = content
+            answersDiv.appendChild(span)
+            span.appendChild(answersButtionDiv)
+            answersButtionDiv.appendChild(aEdit)
+            answersButtionDiv.appendChild(aDelete)
+            return answersDiv
         // container.appendChild(answersDiv)
     }
     const insertAnswerTop = (answer, container) => {
@@ -63,4 +83,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
             container.appendChild(element)
         });
     }
+    const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
+    deleteAnswerButton.forEach(button => {
+        button.addEventListener('click', async (e)=> {
+            e.preventDefault()
+            const answerId = e.target.id
+            const res = await fetch(`/answers/${answerId}/delete`, {
+                method: 'DELETE'
+            })
+            let resData = await res.json()
+            const container = document.getElementsByClassName(resData.message)
+            let arrayContainer = Array.from(container)
+            arrayContainer[0].remove()
+        })
+    })
 })

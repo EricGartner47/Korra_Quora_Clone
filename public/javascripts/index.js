@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", e =>{
     const clickContainer = document.querySelector('.click-container');
     const dropdown = document.querySelector('.dropdown')
     const arrow = document.querySelector('.fa-angle-down')
-    clickContainer.addEventListener('click', e => {
+    clickContainer.addEventListener('click', async (e) => {
         if(dropdown.style.display !== 'flex'){
             dropdown.style.display = 'flex';
             arrow.style.transform = 'rotate(360deg)'

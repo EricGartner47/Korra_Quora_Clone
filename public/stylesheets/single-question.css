@@ -177,7 +177,20 @@ body {
     text-decoration: none;
 }
 
+.answer-update-button {
+    padding: 5px;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 3px;
+    margin: 5px;
+    text-decoration: none;
+}
+
 .update-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
+}
+
+.answer-update-button:hover {
     background-color: rgba(109, 3, 3, 0.9);
 }
 
@@ -190,10 +203,22 @@ body {
     text-decoration: none;
 }
 
+.answer-delete-button {
+    padding: 5px;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 3px;
+    margin: 5px;
+    text-decoration: none;
+}
+
 .delete-button:hover{
     background-color: rgba(109, 3, 3, 0.9);
 }
 
+.answer-delete-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
+}
 
 .question-topic {
     background-color: rgba(0, 102, 255, .8);

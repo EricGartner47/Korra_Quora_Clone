@@ -17,7 +17,7 @@ const answerValidators = [
 
 //API endpoint for editing an answer to a question
 router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
-  const answerToUpdate = await Answer.findByPk(answerId);
+  const answerToUpdate = await db.Answer.findByPk(answerId);
   const { content } = req.body;
   const newAnswer = {
     content,
@@ -40,10 +40,10 @@ router.post('/:id/edit', answerValidators, asyncHandler(async (req, res) => {
 );
 
 //API endpoint for deleting an answer to a question
-router.post('/:id/delete', asyncHandler(async (req, res) => {
-  const answer = await Answer.findByPk(answerId);
+router.delete('/:id/delete', asyncHandler(async (req, res) => {
+  const answer = await db.Answer.findByPk(req.params.id);
   await answer.destroy();
-  return res.redirect('/');
-})
+  return res.json({message: req.params.id});
+  })
 );
 module.exports = router;
