@@ -20,12 +20,11 @@ body {
     border-radius: 1rem;
     width: fit-content;
     margin: .2rem;
+    transition: background-color .5s;
 }
 
 .topic-contianer:hover{
     background-color: rgba(198, 217, 245, 0.8);
-    transition-property: opacity;
-    transition-duration: 180ms;
 }
 .topic-contianer > a{
     color: white;
