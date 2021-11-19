@@ -31,8 +31,8 @@ block content
                     a(href=`/questions/${answer.id}/delete` class="delete-button") Delete
             .answers-Post
                 form(action=`/questions/${answer.id}/answer`, method="post" id="answer-form")
-                    textarea(placeholder="Leave your answer." id="answers-Test" name="content", cols="100", rows="9" value=content)
-                    button(class='create-answer' id=answer.id) Answer
+                    textarea(placeholder="Leave your comment." id="answers-Test" name="content", cols="100", rows="9" value=content)
+                    button(class='create-answer' id=answer.id) Comment
             each comment in answer.Comments
                 .answers(class=answer.id)
                     span= answer.content
