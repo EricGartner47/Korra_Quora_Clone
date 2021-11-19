@@ -92,8 +92,8 @@ form > button {
     align-items: center;
 }
 
-.fa-search {
-    color:rgba(0, 0, 0, 0.5)
+.fa-search:hover{
+    cursor: pointer;
 }
 
 .right-nav-container {
