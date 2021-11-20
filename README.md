@@ -1,7 +1,17 @@
 # Korra - A Quora Clone
+[Korra](https://korra-quora-clone.herokuapp.com/)
 
 ## At A Glance
-Korra is a full stack web application that allows logged users to post questions by topic. Logged in users may also post answers to posted questions and post comments to answers.
+Korra is a full stack web application that allows logged users to:
+ - Post a question by topic
+ - Edit a posted question only by the posting user
+ - Delete a posted question only by the posting user
+ - Post an answer to a posted question
+ - Edit an answer to a posted question
+ - Delete an answer to a posted question
+ - Post a comment to an answer
+ - Edit a comment to an answer
+ - Delete a comment to an answer
 
 ## Application Architecture
 Korra is built with a PUG frontend and an Express backend. PostgreSQL is also used for database queries.
@@ -32,4 +42,4 @@ We used PostgreSQL because it is easy for us to use and manipulate with sequeliz
 Again, we used sequelize because of the ease of use as well as our familiarity with the language.
 
 ## Conclusion and Next Steps
-We are happy with the functionality, but we would like to add more to the styling. 
+We are happy with the functionality, but we would like to add more to the styling.
