@@ -32,7 +32,7 @@ block content
             .answers-Post
                 form(action=`/answers/${answer.id}/comment`, method="post" id="comment-form")
                     textarea(placeholder="Leave your comment." id="answers-Test" name="content", cols="100", rows="9" value=content)
-                button(class='create-comment' id=answer.id) Comment
+                    button(class='create-comment' id=answer.id) Comment
             each comment in answer.Comments
-                .answers(class=answer.id)
-                    span= answer.content
+                .answers(class=comment.id)
+                    span= comment.content
