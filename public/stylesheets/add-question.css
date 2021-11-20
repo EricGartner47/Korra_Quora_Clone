@@ -183,3 +183,7 @@ body {
 #title-input {
     width: 30rem;
 }
+
+.fa-search:hover{
+    cursor: pointer;
+}
