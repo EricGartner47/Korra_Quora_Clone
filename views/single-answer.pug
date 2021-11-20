@@ -3,7 +3,7 @@ extends layout.pug
 block content
     style
         include ../public/stylesheets/single-question.css
-    script(src="/javascripts/comments.js" type="module")
+    script(src="./javascripts/comments.js" type="module")
     body
         nav.nav-container
             a(href="/questions" class="logo") Korra
@@ -30,9 +30,9 @@ block content
                     a(href=`/questions/${answer.id}/edit` class="update-button") Edit
                     a(href=`/questions/${answer.id}/delete` class="delete-button") Delete
             .answers-Post
-                form(action=`/questions/${answer.id}/answer`, method="post" id="answer-form")
+                form(action=`/answers/${answer.id}/comment`, method="post" id="comment-form")
                     textarea(placeholder="Leave your comment." id="answers-Test" name="content", cols="100", rows="9" value=content)
-                    button(class='create-answer' id=answer.id) Comment
+                button(class='create-comment' id=answer.id) Comment
             each comment in answer.Comments
                 .answers(class=answer.id)
                     span= answer.content
