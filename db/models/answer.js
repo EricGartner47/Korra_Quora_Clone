@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Answer.associate = function(models) {
-    Answer.belongsTo(models.User, {foreignKey: 'userId'})
-    Answer.belongsTo(models.Question, {foreignKey: 'questionId'})
+    Answer.belongsTo(models.User, {foreignKey: 'userId', onDelete: 'cascade'})
+    Answer.belongsTo(models.Question, {foreignKey: 'questionId', onDelete: 'cascade'})
   };
   return Answer;
 };

@@ -17,11 +17,13 @@ module.exports = {
         type: Sequelize.TEXT
       },
       topicId: {
+        onDelete: 'CASCADE',
         allowNull:false,
         type: Sequelize.INTEGER,
         references: {model: 'Topics'}
       },
       userId: {
+        onDelete: 'CASCADE', 
         allowNull:false,
         type: Sequelize.INTEGER,
         references: {model: 'Users'}
