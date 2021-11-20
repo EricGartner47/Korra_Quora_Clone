@@ -10,7 +10,9 @@ const indexRouter = require('./routes/index');
 const questionsRouter = require('./routes/questions');
 const answersRouter = require('./routes/answers');
 const searchRouter = require('./routes/search')
+const commentRouter = require('./routes/comments')
 const sessionSecret = require('./config/index').sessionSecret;
+const router = require('./routes/answers');
 
 
 const app = express();
@@ -40,6 +42,7 @@ app.use('/', indexRouter);
 app.use('/questions', questionsRouter)
 app.use('/answers', answersRouter)
 app.use('/search', searchRouter)
+app.use('/comments', commentRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -50,7 +53,7 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  // render the error page
+  console.log(err)
   res.status(err.status || 500);
   res.render('error');
 });

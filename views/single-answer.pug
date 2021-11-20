@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
     style
-        include ../public/stylesheets/single-question.css
+        include ../public/stylesheets/single-page.css
     script(src="/javascripts/comments.js" type="module")
     body
         nav.nav-container
@@ -36,6 +36,6 @@ block content
             each comment in answer.Comments
                 .answers(class=comment.id)
                     span= comment.content
-                    if(answer.userId == user.id)
+                    if(comment.userId == user.id)
                       .answers-button-container
-                        a(href=`/answers/${answer.id}/delete` class="answer-delete-button" id=answer.id) Delete
+                        a(href=`/comments/${comment.id}/delete` class="answer-delete-button" id=comment.id) Delete

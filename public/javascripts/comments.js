@@ -27,21 +27,21 @@ window.addEventListener('DOMContentLoaded', (e) => {
             body: JSON.stringify(data)
         });
         const resData = await res.json();
-        let answersDiv = generateAnswerHtml(resData.message, content)
-        insertAnswerTop(answersDiv, container)
-        const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
-        deleteAnswerButton.forEach(button => {
+        let commentsDiv = generateAnswerHtml(resData.message, content)
+        insertAnswerTop(commentsDiv, container)
+        const deleteCommentButton = document.querySelectorAll('.answer-delete-button')
+        console.log(deleteCommentButton)
+        deleteCommentButton.forEach(button => {
             button.addEventListener('click', async (e) => {
                 e.preventDefault()
-                const answerId = e.target.id
-                const res = await fetch(`/answers/${answerId}/delete`, {
+                const commentId = e.target.id
+                const res = await fetch(`/comments/${commentId}/delete`, {
                     method: 'DELETE'
                 })
                 let resData = await res.json()
                 const container = document.getElementsByClassName(resData.message)
                 let arrayContainer = Array.from(container)
                 arrayContainer[0].remove()
-
             })
         })
         answeresText.value = ''
@@ -53,33 +53,20 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     const generateAnswerHtml = (id, content) => {
         const answersDiv = document.createElement('div')
-        // answersDiv.className = ('answers', id)
         answersDiv.classList.add('answers', id);
-
-        // answersDiv.className = 'answers'
         const answersButtionDiv = document.createElement('div')
         answersButtionDiv.className = 'answers-button-container'
         const span = document.createElement('span')
         const aEdit = document.createElement('a')
         const aDelete = document.createElement('a')
         const aComment = document.createElement('a')
-        // aComment.href = `/answers/${id}`
-        // aEdit.href = `/answers/${id}/edit`
         aDelete.href = `/answers/${id}/delete`
-        // aEdit.className = "answer-update-button"
         aDelete.className = "answer-delete-button"
-        // aComment.className = "answer-comment-button"
-        // aEdit.id = id
         aDelete.id = id
-        // aComment.id = id
-        // aEdit.innerText = "Edit"
         aDelete.innerText = "Delete"
         span.innerText = content
-        // aComment.innerText = "Comment"
         answersDiv.appendChild(span)
         span.appendChild(answersButtionDiv)
-        // answersButtionDiv.appendChild(aComment)
-        // answersButtionDiv.appendChild(aEdit)
         answersButtionDiv.appendChild(aDelete)
         return answersDiv
         // container.appendChild(answersDiv)
@@ -92,12 +79,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
             container.appendChild(element)
         });
     }
-    const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
-    deleteAnswerButton.forEach(button => {
+
+    const deleteCommentButton = document.querySelectorAll('.answer-delete-button')
+    console.log(deleteCommentButton)
+    deleteCommentButton.forEach(button => {
         button.addEventListener('click', async (e) => {
             e.preventDefault()
-            const answerId = e.target.id
-            const res = await fetch(`/answers/${answerId}/delete`, {
+            const commentId = e.target.id
+            const res = await fetch(`/comments/${commentId}/delete`, {
                 method: 'DELETE'
             })
             let resData = await res.json()
