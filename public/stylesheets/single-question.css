@@ -18,11 +18,11 @@ textarea {
     resize: none;
     padding: 1rem;
 }
-form {
+.answer-form {
     display: flex;
     flex-direction: column;
 }
-form > button {
+.answer-form > button {
     border: none;
     background-color: rgba(0, 102, 255, .8);
     border-radius: 0px 0px 5px 5px;
@@ -30,6 +30,12 @@ form > button {
     color: white;
     cursor: pointer;
 }
+
+.answer-form > button:hover {
+    background-color: rgba(3, 78, 190, 0.8);
+    transition: background-color .5s;
+}
+
 .container{
     height: 100%;
     display: flex;

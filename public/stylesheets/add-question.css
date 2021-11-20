@@ -117,11 +117,13 @@ body {
     height: fit-content;
     width: fit-content;
 }
+
 .form-container > div {
     padding: 1rem;
     display: flex;
     flex-direction: column;
 }
+
 .form-container > div > input {
     border: 1px solid rgba(150, 150, 150, 0.4);
     border-radius: 3px;
@@ -130,6 +132,7 @@ body {
     font-size: 1rem;
     padding: .5rem;
 }
+
 .description-container > textarea {
     border: 1px solid rgba(150, 150, 150, 0.4);
     border-radius: 3px;
@@ -137,6 +140,7 @@ body {
     font-size: 1rem;
     padding: .5rem;
 }
+
 .add-question-button {
     border: none;
     font-size: 1rem;
@@ -166,13 +170,16 @@ body {
     border-bottom: 1px solid rgba(150, 150, 150, 0.4);
     width: 100%;
 }
+
 .add-question-container {
     width: 100%;
 }
+
 .form-container > div > label {
     color: rgba(0, 0, 0, 0.8);
     padding: 4px;
 }
+
 #title-input {
     width: 30rem;
 }
