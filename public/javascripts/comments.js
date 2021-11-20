@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         insertAnswerTop(answersDiv, container)
         const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
         deleteAnswerButton.forEach(button => {
-            button.addEventListener('click', async (e)=> {
+            button.addEventListener('click', async (e) => {
                 e.preventDefault()
                 const answerId = e.target.id
                 const res = await fetch(`/answers/${answerId}/delete`, {
@@ -48,40 +48,40 @@ window.addEventListener('DOMContentLoaded', (e) => {
         // const data = await res.json()
         // console.log(data)
         // if (data.message === "user created") {
-            //     console.log('we did it')
-            // }
-        })
-        const generateAnswerHtml = (id, content) => {
-            const answersDiv = document.createElement('div')
-            // answersDiv.className = ('answers', id)
-            answersDiv.classList.add('answers', id);
+        //     console.log('we did it')
+        // }
+    })
+    const generateAnswerHtml = (id, content) => {
+        const answersDiv = document.createElement('div')
+        // answersDiv.className = ('answers', id)
+        answersDiv.classList.add('answers', id);
 
-            // answersDiv.className = 'answers'
-            const answersButtionDiv = document.createElement('div')
-            answersButtionDiv.className = 'answers-button-container'
-            const span = document.createElement('span')
-            const aEdit = document.createElement('a')
-            const aDelete = document.createElement('a')
-            const aComment = document.createElement('a')
-            aComment.href = `/answers/${id}`
-            aEdit.href = `/answers/${id}/edit`
-            aDelete.href = `/answers/${id}/delete`
-            aEdit.className = "answer-update-button"
-            aDelete.className = "answer-delete-button"
-            aComment.className = "answer-comment-button"
-            aEdit.id = id
-            aDelete.id = id
-            aComment.id = id
-            aEdit.innerText = "Edit"
-            aDelete.innerText = "Delete"
-            span.innerText = content
-            aComment.innerText = "Comment"
-            answersDiv.appendChild(span)
-            span.appendChild(answersButtionDiv)
-            answersButtionDiv.appendChild(aComment)
-            answersButtionDiv.appendChild(aEdit)
-            answersButtionDiv.appendChild(aDelete)
-            return answersDiv
+        // answersDiv.className = 'answers'
+        const answersButtionDiv = document.createElement('div')
+        answersButtionDiv.className = 'answers-button-container'
+        const span = document.createElement('span')
+        const aEdit = document.createElement('a')
+        const aDelete = document.createElement('a')
+        const aComment = document.createElement('a')
+        // aComment.href = `/answers/${id}`
+        // aEdit.href = `/answers/${id}/edit`
+        aDelete.href = `/answers/${id}/delete`
+        // aEdit.className = "answer-update-button"
+        aDelete.className = "answer-delete-button"
+        // aComment.className = "answer-comment-button"
+        // aEdit.id = id
+        aDelete.id = id
+        // aComment.id = id
+        // aEdit.innerText = "Edit"
+        aDelete.innerText = "Delete"
+        span.innerText = content
+        // aComment.innerText = "Comment"
+        answersDiv.appendChild(span)
+        span.appendChild(answersButtionDiv)
+        // answersButtionDiv.appendChild(aComment)
+        // answersButtionDiv.appendChild(aEdit)
+        answersButtionDiv.appendChild(aDelete)
+        return answersDiv
         // container.appendChild(answersDiv)
     }
     const insertAnswerTop = (answer, container) => {
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     }
     const deleteAnswerButton = document.querySelectorAll('.answer-delete-button')
     deleteAnswerButton.forEach(button => {
-        button.addEventListener('click', async (e)=> {
+        button.addEventListener('click', async (e) => {
             e.preventDefault()
             const answerId = e.target.id
             const res = await fetch(`/answers/${answerId}/delete`, {
