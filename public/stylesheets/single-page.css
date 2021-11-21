@@ -243,12 +243,26 @@ textarea {
     text-decoration: none;
 }
 
+.answer-comment-button {
+    padding: 5px;
+    background-color:rgba(167, 2, 2, .9);
+    color: white;
+    border-radius: 3px;
+    margin: 5px;
+    text-decoration: none;
+}
+
 .delete-button:hover{
     background-color: rgba(109, 3, 3, 0.9);
     transition: background-color .5s;
 }
 
 .answer-delete-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
+    transition: background-color .5s;
+}
+
+.answer-comment-button:hover{
     background-color: rgba(109, 3, 3, 0.9);
     transition: background-color .5s;
 }
@@ -268,4 +282,24 @@ textarea {
 
 #answers {
     width: 20rem;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.create-comment{
+    border: none;
+    background-color: rgba(0, 102, 255, .8);
+    border-radius: 0px 0px 5px 5px;
+    padding: .5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.create-comment:hover {
+    background-color: rgba(3, 78, 190, 0.8);
+    transition: background-color .5s;
 }

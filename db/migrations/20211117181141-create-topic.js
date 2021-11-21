@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       topic: {
-        allowNull:false, 
+        onDelete: 'CASCADE',
+        allowNull:false,
         type: Sequelize.STRING
       },
       createdAt: {
