@@ -27,8 +27,8 @@ block content
                 span= answer.content
                 if(answer.userId == user.id)
                   .question-button-container
-                    a(href=`/questions/${answer.id}/edit` class="update-button") Edit
-                    a(href=`/questions/${answer.id}/delete` class="delete-button") Delete
+                    a(href=`/answers/${answer.id}/edit` class="update-button") Edit
+                    a(href=`/answers/${answer.id}/delete` class="delete-button") Delete
             .answers-Post
                 form(action=`/answers/${answer.id}/comment`, method="post" id="comment-form")
                     textarea(placeholder="Leave your comment." id="answers-Test" name="content", cols="100", rows="9" value=content)
