@@ -59,17 +59,23 @@ window.addEventListener('DOMContentLoaded', (e) => {
             const span = document.createElement('span')
             const aEdit = document.createElement('a')
             const aDelete = document.createElement('a')
+            const aComment = document.createElement('a')
+            aComment.href = `/answers/${id}`
             aEdit.href = `/answers/${id}/edit`
             aDelete.href = `/answers/${id}/delete`
             aEdit.className = "answer-update-button"
             aDelete.className = "answer-delete-button"
+            aComment.className = "answer-comment-button"
             aEdit.id = id
             aDelete.id = id
+            aComment.id = id
             aEdit.innerText = "Edit"
             aDelete.innerText = "Delete"
             span.innerText = content
+            aComment.innerText = "Comment"
             answersDiv.appendChild(span)
             span.appendChild(answersButtionDiv)
+            answersButtionDiv.appendChild(aComment)
             answersButtionDiv.appendChild(aEdit)
             answersButtionDiv.appendChild(aDelete)
             return answersDiv
@@ -97,5 +103,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
             arrayContainer[0].remove()
         })
     })
-    
+
 })

@@ -48,5 +48,40 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
   return res.json({ message: req.params.id });
   })
 );
-//test
+
+router.get('/:id', asyncHandler(async(req, res) => {
+  const answer = await db.Answer.findByPk(req.params.id, {
+    include: [{
+      model: db.Comment
+    }]
+  });
+  const user = await db.User.findByPk(req.session.auth.userId)
+  res.render('single-answer', {answer, user})
+}))
+
+router.post('/:id/comment', answerValidators, asyncHandler(async (req, res) => {
+  const { content } = req.body;
+  const answer = await db.Answer.findByPk(req.params.id)
+  const user = await db.User.findByPk(req.session.auth.userId)
+  const validatorErrors = validationResult(req);
+  const newComment = db.Comment.build({
+    content,
+    answerId: answer.id,
+    userId: user.id
+  });
+  if (validatorErrors.isEmpty()) {
+    await newComment.save();
+    res.json({ message: newComment.id })
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    return res.render('single-answer', {
+      title: 'Answer',
+      user,
+      content,
+      errors,
+      answer
+    });
+  }
+})
+);
 module.exports = router;

@@ -1,0 +1,41 @@
+extends layout.pug
+
+block content
+    style
+        include ../public/stylesheets/single-page.css
+    script(src="/javascripts/comments.js" type="module")
+    body
+        nav.nav-container
+            a(href="/questions" class="logo") Korra
+            .search-container
+              i(class="fas fa-search")
+              input.search-input
+            .right-nav-container
+              .click-container
+                span(class="user-name") #{user.username.toUpperCase()}
+                span.x: i(class="fa-solid fa-angle-down")
+            .dropdown
+              a(href="/questions/create" class="add-question-button") Add Question
+              a(href="/logout" class="log-out-button") Log Out
+        .container
+            if errors
+                .error-container
+                    ul
+                        each error in errors
+                            li= error
+            .question
+                span= answer.content
+                if(answer.userId == user.id)
+                  .question-button-container
+                    a(href=`/questions/${answer.id}/edit` class="update-button") Edit
+                    a(href=`/questions/${answer.id}/delete` class="delete-button") Delete
+            .answers-Post
+                form(action=`/answers/${answer.id}/comment`, method="post" id="comment-form")
+                    textarea(placeholder="Leave your comment." id="answers-Test" name="content", cols="100", rows="9" value=content)
+                    button(class='create-comment' id=answer.id) Comment
+            each comment in answer.Comments
+                .answers(class=comment.id)
+                    span= comment.content
+                    if(comment.userId == user.id)
+                      .answers-button-container
+                        a(href=`/comments/${comment.id}/delete` class="answer-delete-button" id=comment.id) Delete

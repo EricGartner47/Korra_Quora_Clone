@@ -2,17 +2,14 @@ extends layout.pug
 
 block content
     style
-        include ../public/stylesheets/single-page.css
+        include ../public/stylesheets/comments.css
     script(src="/javascripts/answers.js" type="module")
     body
         nav.nav-container
             a(href="/questions" class="logo") Korra
-            form(class="search-container" action="/search/", method="post")
-              input(name='value').search-input
-              button(type='submit')
-                i(class="fas fa-search")
-            //- .search-container
-            //-   input.search-input
+            .search-container
+              i(class="fas fa-search")
+              input.search-input
             .right-nav-container
               .click-container
                 span(class="user-name") #{user.username.toUpperCase()}
@@ -35,14 +32,14 @@ block content
                     a(href=`/questions/${question.id}/edit` class="update-button") Edit
                     a(href=`/questions/${question.id}/delete` class="delete-button") Delete
             .answers-Post
-                form(action=`/questions/${question.id}/answer`, method="post" id="answer-form" class="answer-form")
+                form(action=`/questions/${question.id}/answer`, method="post" id="answer-form")
                     textarea(placeholder="Leave your answer." id="answers-Test" name="content", cols="100", rows="9" value=content)
                     button(class='create-answer' id=question.id) Answer
-            each answer in question.Answers
-                .answers(class=answer.id)
-                    span= answer.content
-                    if(question.userId == user.id)
-                      .answers-button-container
-                        a(href=`/answers/${answer.id}` class="answer-comment-button" id=answer.id) Comment
-                        a(href=`/answers/${answer.id}/edit` class="answer-update-button" id=answer.id) Edit
-                        a(href=`/answers/${answer.id}/delete` class="answer-delete-button" id=answer.id) Delete
+            //- each answer in question.Answers
+            //-     .answers(class=answer.id)
+            //-         span= answer.content
+            //-         if(question.userId == user.id)
+            //-           .answers-button-container
+            //-             a(href=`/answers/${answer.id}/comment` class="answer-comment-button" id=answer.id) Comment
+            //-             a(href=`/answers/${answer.id}/edit` class="answer-update-button" id=answer.id) Edit
+            //-             a(href=`/answers/${answer.id}/delete` class="answer-delete-button" id=answer.id) Delete
