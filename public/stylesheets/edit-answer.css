@@ -52,11 +52,11 @@ body {
     color: rgba(0, 0, 0, 0.1);
     transition-property: opacity;
     transition-duration: 180ms;
+    transition: color .5s;
 }
 
 .search-container {
     display: flex;
-    /* border: 1px solid rgba(0, 0, 0, 0.7); */
     width: 50%;
     border-radius: 1.5rem;
     background-color: white;
@@ -98,6 +98,11 @@ body {
 
 .log-out-button{
     padding-left: 0.5rem;
+}
+
+.log-out-button:hover {
+    background-color: rgba(109, 3, 3, 0.9);
+    transition: background-color .5s;
 }
 
 .form-container {
@@ -146,6 +151,11 @@ body {
     align-items: center;
 }
 
+.edit-answer-button:hover{
+    background-color: rgba(109, 3, 3, 0.9);
+    transition: background-color .5s;
+}
+
 .edit-answer-container {
     width: 100%;
 }
@@ -155,4 +165,8 @@ body {
 }
 #title-input {
     width: 30rem;
+}
+
+.fa-search:hover{
+    cursor: pointer;
 }

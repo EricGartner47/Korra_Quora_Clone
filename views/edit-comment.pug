@@ -1,0 +1,31 @@
+//- extends layout.pug
+//- block content
+//-     style
+//-         include ../public/stylesheets/edit-answer.css
+//-     body
+//-         nav.nav-container
+//-             a(href="/questions" class="logo") Korra
+//-             form(class="search-container" action="/search/", method="post")
+//-               input(name='value').search-input
+//-               button(type='submit')
+//-                 i(class="fas fa-search")
+//-             //- .search-container
+//-                 //- i(class="fas fa-search")
+//-                 //- input.search-input
+//-             .right-nav-container
+//-                 a(href="/logout" class="log-out-button") Log Out
+//-         .container
+//-             if errors
+//-                 .error-container
+//-                     ul
+//-                         each error in errors
+//-                             li= error
+//-             form(class="form-container" action=`/comments/${comment.id}/edit` method="POST")
+//-                 input(type='hidden' name='_csrf' value=csrfToken)
+//-                 .edit-answer-container
+//-                     label.edit-question-title Edit Your Comment
+//-                 .content-container
+//-                     label(for="content") Your Comment
+//-                     textarea(name="content", cols="80", rows="8" )= comment.content
+//-                 .submit-answer-container
+//-                     button(class="edit-answer-button" type='submit') Edit Comment

@@ -23,7 +23,7 @@ html(lang="en")
         .dropdown
           a(href="/questions/create" class="add-question-button") Add Question
           a(href="/logout" class="log-out-button") Log Out
-      #questionandtopics
+      #question-and-topics
         if questions.length
           .question-list
             each question in questions
@@ -38,7 +38,7 @@ html(lang="en")
         else
           .question-list
             h2(class="noQuestionErr") There are no matches.
-        .Topics
+        .topics
           each topic in topics
-            .topic-contianer
+            .topic-container
               a(href=`/questions/${topic.topic}`)= topic.topic

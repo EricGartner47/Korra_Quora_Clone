@@ -5,9 +5,13 @@ block content
     body
         nav.nav-container
             a(href="/questions" class="logo") Korra
-            .search-container
+            form(class="search-container" action="/search/", method="post")
+              input(name='value').search-input
+              button(type='submit')
                 i(class="fas fa-search")
-                input.search-input
+            //- .search-container
+            //-     i(class="fas fa-search")
+            //-     input.search-input
             .right-nav-container
                 a(href="/logout" class="log-out-button") Log Out
         .container

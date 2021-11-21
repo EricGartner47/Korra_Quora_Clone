@@ -12,11 +12,13 @@ module.exports = {
         type: Sequelize.TEXT
       },
       questionId: {
+        onDelete: 'CASCADE', 
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'Questions'}
       },
       userId: {
+        onDelete: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'Users'}

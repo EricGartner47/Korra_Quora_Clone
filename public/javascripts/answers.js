@@ -60,7 +60,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
             const aEdit = document.createElement('a')
             const aDelete = document.createElement('a')
             const aComment = document.createElement('a')
+<<<<<<< HEAD
             aComment.href = `/answers/${id}/comment`
+=======
+            aComment.href = `/answers/${id}`
+>>>>>>> working4
             aEdit.href = `/answers/${id}/edit`
             aDelete.href = `/answers/${id}/delete`
             aEdit.className = "answer-update-button"
@@ -72,8 +76,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
             aEdit.innerText = "Edit"
             aDelete.innerText = "Delete"
             span.innerText = content
+            aComment.innerText = "Comment"
             answersDiv.appendChild(span)
             span.appendChild(answersButtionDiv)
+            answersButtionDiv.appendChild(aComment)
             answersButtionDiv.appendChild(aEdit)
             answersButtionDiv.appendChild(aDelete)
             answersButtionDiv.appendChild(aComment)
@@ -102,5 +108,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
             arrayContainer[0].remove()
         })
     })
-    
+
 })

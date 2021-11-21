@@ -18,7 +18,6 @@ router.get('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req
 
 //Route to edit answer
 router.post('/:id/edit', csrfProtection, answerValidators, asyncHandler(async(req, res) => {
-  // console.log('hello')
   const user = await db.User.findByPk(req.session.auth.userId);
   const answer = await db.Answer.findByPk(req.params.id, {
     include: [db.Question]
@@ -50,12 +49,39 @@ router.delete('/:id/delete', asyncHandler(async (req, res) => {
   })
 );
 
-router.get('/:id/comment', asyncHandler(async(req, res) => {
+router.get('/:id', asyncHandler(async(req, res) => {
   const answer = await db.Answer.findByPk(req.params.id, {
     include: [{
       model: db.Comment
     }]
   });
-  res.render('comments', {answer})
+  const user = await db.User.findByPk(req.session.auth.userId)
+  res.render('single-answer', {answer, user})
 }))
+
+router.post('/:id/comment', answerValidators, asyncHandler(async (req, res) => {
+  const { content } = req.body;
+  const answer = await db.Answer.findByPk(req.params.id)
+  const user = await db.User.findByPk(req.session.auth.userId)
+  const validatorErrors = validationResult(req);
+  const newComment = db.Comment.build({
+    content,
+    answerId: answer.id,
+    userId: user.id
+  });
+  if (validatorErrors.isEmpty()) {
+    await newComment.save();
+    res.json({ message: newComment.id })
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    return res.render('single-answer', {
+      title: 'Answer',
+      user,
+      content,
+      errors,
+      answer
+    });
+  }
+})
+);
 module.exports = router;

@@ -44,7 +44,7 @@ router.get('/create', csrfProtection, asyncHandler(async (req, res, next) => {
   res.render('add-question', { topics, csrfToken: req.csrfToken() });
 }))
 
-//Route to create question
+//Route to create question passing in topic model 
 router.post('/create', csrfProtection, questionValidators, asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.session.auth.userId);
   const topics = await db.Topic.findAll()
@@ -72,6 +72,7 @@ const answerValidators = [
     .withMessage('Title must not be more than 500 characters long'),
 ];
 
+//Route to render the Questions page passing in user, questions, and topic model
 router.get("/:id([a-zA-Z]+)", asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.session.auth.userId)
   const questions = await db.Question.findAll({
@@ -86,6 +87,7 @@ router.get("/:id([a-zA-Z]+)", asyncHandler(async (req, res) => {
   res.render('questions', { user, questions, topics });
 }))
 
+//Route to create an answer to a question
 router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
   const { content } = req.body;
   const question = await db.Question.findByPk(req.params.id)
@@ -111,6 +113,7 @@ router.post('/:id/answer/', answerValidators, asyncHandler(async (req, res) => {
   }
 })
 );
+
 //Route to indivdual question
 router.get('/:id', asyncHandler(async (req, res, next) => {
   const question = await db.Question.findByPk(req.params.id, {
@@ -163,6 +166,6 @@ router.post('/:id/edit', csrfProtection, questionValidators, asyncHandler(async 
     res.render('edit-question', { errors, topics, question, csrfToken: req.csrfToken() })
   }
 }))
-//test
+
 
 module.exports = router;

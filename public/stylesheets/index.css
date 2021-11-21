@@ -108,6 +108,7 @@ body {
 
 .login-button:hover {
     background-color: rgba(6, 80, 190, 0.8);
+    transition: background-color .5s;
 }
 
 .sign-up {
@@ -156,6 +157,7 @@ body {
 
 .demo-button:hover{
     background-color: rgba(109, 3, 3, 0.9);
+    transition: background-color .5s;
 }
 
 .error-container {
