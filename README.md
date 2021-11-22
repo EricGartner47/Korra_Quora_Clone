@@ -25,7 +25,7 @@ We used an Express server to handle the backend communication because we have th
 
 ## Key Features
 ### User Authorization
-User authorization is handling in JS using BCrypt for passowrd hasing. When users log in, the password they provide is rehashed and checked agains the original password. 
+User authorization is handling in JS using BCrypt for password hasing. When users log in, the password they provide is rehashed and checked agains the original password. 
 ![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/userlog.png)
 
 ### Post a Question
