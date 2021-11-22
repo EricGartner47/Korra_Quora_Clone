@@ -14,32 +14,33 @@ Korra is a full stack web application that allows logged users to:
  - Delete a comment to an answer
 
 ## Application Architecture
-Korra is built with a PUG frontend and an Express backend. PostgreSQL is also used for database queries.
+Korra is built with a PUG frontend and an Express backend. PostgreSQL is also used as a database.
 
-## Frontend Overview
-Korra uses PUG and CSS for its frontend logic.
+## Frontend Technologies Used 
+Korra uses PUG to generate the HTML elements, and then we use CSS to handling the styling of those elements.
 
-### Frontend Technologies Used
+## Backend Technologies Used
+We used an Express server to handle the backend communication because we have the most experience with this language for backend development. We used PostgreSQL because it is easy for us to use and manipulate with sequelize. Again, we used sequelize because of the ease of use as well as our familiarity with the language.
 
-#### PUG
-Korra uses PUG to display the frontend log.
+## Key Features
+### User Authorization
+User authorization is handling in JS using BCrypt for passowrd hasing. When users log in, the password they provide is rehashed and checked agains the original password. 
+!(https://github.com/EricGartner47/QuoraClone-GroupProject/tree/main/images)
 
-#### CSS
-Korra uses CSS to handle its styling of the PUG frontend.
+### Post a Question
+An authorized user can post a question with a topic that can then be seen by any logged in user. Only the authorized user may then edit or delete the posted question.
+!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/add%20question.png)
 
-## Backend Overview
-Korra uses an Express server and PostgreSQL database.
+### Search Questions
+A user can search questions by keyword in the search bar. The search will generate questions found by keyword. 
 
-### Backend Technologies Used
+### Topics
+A user can pull up questions by topic that is located to the right of the questions. A user can click on the list of topics that will generate questions by those topics.
+!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/topics.png)
 
-#### ExpressJS
-We used an Express server to handle the backend communication because we have the most experience with this language for backend development.
-
-#### PostgreSQL
-We used PostgreSQL because it is easy for us to use and manipulate with sequelize.
-
-#### Sequelize
-Again, we used sequelize because of the ease of use as well as our familiarity with the language.
+### Post an Answer and a Comment
+An authorized user may post an answer to a posted question. Only the authorized user can then edit or delete the answer to the posted question. An authorized user may also post a comment to an answer. The user may also delete the posted comment.
+!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
 
 ## Conclusion and Next Steps
 We are happy with the functionality, but we would like to add more to the styling.
