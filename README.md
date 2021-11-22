@@ -27,7 +27,7 @@ We used an Express server to handle the backend communication because we have th
 ## Key Features
 ### User Authorization
 User authorization is handling in JS using BCrypt for passowrd hasing. When users log in, the password they provide is rehashed and checked agains the original password. 
-![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/tree/main/images)
+![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/userlog.png)
 
 ### Post a Question
 An authorized user can post a question with a topic that can then be seen by any logged in user. Only the authorized user may then edit or delete the posted question.
