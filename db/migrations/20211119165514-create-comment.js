@@ -12,14 +12,16 @@ module.exports = {
         type: Sequelize.STRING
       },
       answerId: {
+        onDelete: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'Answers'}
       },
       userId: {
+        onDelete: 'CASCADE',
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: 'Questions'}
+        references: {model: 'Users'}
       },
       createdAt: {
         allowNull: false,
