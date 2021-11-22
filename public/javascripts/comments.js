@@ -1,12 +1,12 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     const addAnswerButton = document.querySelector('.create-comment')
     const container = document.querySelector('.container')
-    const answeresText = document.querySelector('#answers-Test')
+    const answersText = document.querySelector('#answers-Test')
     const form = document.querySelector('#comment-form')
     form.addEventListener("submit", (e) => {
         e.preventDefault()
     })
-    console.log(addAnswerButton)
+    // console.log(addAnswerButton)
     addAnswerButton.addEventListener('click', async (e) => {
         console.log(form)
         e.preventDefault()
@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 arrayContainer[0].remove()
             })
         })
-        answeresText.value = ''
+        answersText.value = ''
         // const data = await res.json()
         // console.log(data)
         // if (data.message === "user created") {
@@ -54,8 +54,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const generateAnswerHtml = (id, content) => {
         const answersDiv = document.createElement('div')
         answersDiv.classList.add('answers', id);
-        const answersButtionDiv = document.createElement('div')
-        answersButtionDiv.className = 'answers-button-container'
+        const answersButtonDiv = document.createElement('div')
+        answersButtonDiv.className = 'answers-button-container'
         const span = document.createElement('span')
         const aEdit = document.createElement('a')
         const aDelete = document.createElement('a')
@@ -66,8 +66,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
         aDelete.innerText = "Delete"
         span.innerText = content
         answersDiv.appendChild(span)
-        span.appendChild(answersButtionDiv)
-        answersButtionDiv.appendChild(aDelete)
+        span.appendChild(answersButtonDiv)
+        answersButtonDiv.appendChild(aDelete)
         return answersDiv
         // container.appendChild(answersDiv)
     }
