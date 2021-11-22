@@ -1,5 +1,6 @@
 # Korra - A Quora Clone
 [Korra](https://korra-quora-clone.herokuapp.com/)
+
 [Wiki](https://github.com/EricGartner47/QuoraClone-GroupProject/wiki)
 
 ## At A Glance
