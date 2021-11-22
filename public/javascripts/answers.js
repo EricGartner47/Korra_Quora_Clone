@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     const addAnswerButton = document.querySelector('.create-answer')
     const container = document.querySelector('.container')
-    const answeresText = document.querySelector('#answers-Test')
+    const answersText = document.querySelector('#answers-Test')
     addAnswerButton.addEventListener('click', async (e) => {
         const form = document.querySelector('#answer-form')
         form.addEventListener("submit", (e) => {
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
             })
         })
-        answeresText.value = ''
+        answersText.value = ''
         // const data = await res.json()
         // console.log(data)
         // if (data.message === "user created") {
@@ -54,17 +54,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
             answersDiv.classList.add('answers', id);
 
             // answersDiv.className = 'answers'
-            const answersButtionDiv = document.createElement('div')
-            answersButtionDiv.className = 'answers-button-container'
+            const answersButtonDiv = document.createElement('div')
+            answersButtonDiv.className = 'answers-button-container'
             const span = document.createElement('span')
             const aEdit = document.createElement('a')
             const aDelete = document.createElement('a')
             const aComment = document.createElement('a')
-<<<<<<< HEAD
-            aComment.href = `/answers/${id}/comment`
-=======
             aComment.href = `/answers/${id}`
->>>>>>> working4
             aEdit.href = `/answers/${id}/edit`
             aDelete.href = `/answers/${id}/delete`
             aEdit.className = "answer-update-button"
@@ -78,11 +74,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
             span.innerText = content
             aComment.innerText = "Comment"
             answersDiv.appendChild(span)
-            span.appendChild(answersButtionDiv)
-            answersButtionDiv.appendChild(aComment)
-            answersButtionDiv.appendChild(aEdit)
-            answersButtionDiv.appendChild(aDelete)
-            answersButtionDiv.appendChild(aComment)
+            span.appendChild(answersButtonDiv)
+            answersButtonDiv.appendChild(aComment)
+            answersButtonDiv.appendChild(aEdit)
+            answersButtonDiv.appendChild(aDelete)
             return answersDiv
         // container.appendChild(answersDiv)
     }

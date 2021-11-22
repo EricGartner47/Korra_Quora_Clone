@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model: 'Answers'}
       },
-      questionId: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'Questions'}
