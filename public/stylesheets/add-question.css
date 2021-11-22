@@ -187,3 +187,8 @@ body {
 .fa-search:hover{
     cursor: pointer;
 }
+
+.search-button {
+    border: none;
+    background-color: transparent;
+}

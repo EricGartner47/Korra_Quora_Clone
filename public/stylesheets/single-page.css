@@ -75,7 +75,10 @@ textarea {
 }
 
 .search-container {
+    position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50%;
     border-radius: 1.5rem;
     background-color: white;
@@ -97,7 +100,10 @@ textarea {
     justify-content: flex-start;
     align-items: center;
 }
-
+.fa-search {
+    color:rgba(0, 0, 0, 0.5);
+    font-size: .8rem;
+}
 .fa-search:hover{
     cursor: pointer;
 }
@@ -302,4 +308,9 @@ textarea {
 .create-comment:hover {
     background-color: rgba(3, 78, 190, 0.8);
     transition: background-color .5s;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
 }
