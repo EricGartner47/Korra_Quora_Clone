@@ -1,6 +1,7 @@
 # Korra - A Quora Clone
 [Korra](https://korra-quora-clone.herokuapp.com/)
 
+Korra is a clone of Quora with CRUD operations for questions and answers. It also includes comments to the answers. Most of these features are only available when logged into the site, you can create an account and try it at https://korra-quora-clone.herokuapp.com/signup
 ## At A Glance
 Korra is a full stack web application that allows logged users to:
  - Post a question by topic
