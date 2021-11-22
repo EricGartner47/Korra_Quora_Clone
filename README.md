@@ -25,22 +25,22 @@ We used an Express server to handle the backend communication because we have th
 ## Key Features
 ### User Authorization
 User authorization is handling in JS using BCrypt for passowrd hasing. When users log in, the password they provide is rehashed and checked agains the original password. 
-!(https://github.com/EricGartner47/QuoraClone-GroupProject/tree/main/images)
+![Splash Page](https://github.com/EricGartner47/QuoraClone-GroupProject/tree/main/images)
 
 ### Post a Question
 An authorized user can post a question with a topic that can then be seen by any logged in user. Only the authorized user may then edit or delete the posted question.
-!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/add%20question.png)
+![Create a Question](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/add%20question.png)
 
 ### Search Questions
 A user can search questions by keyword in the search bar. The search will generate questions found by keyword. 
 
 ### Topics
 A user can pull up questions by topic that is located to the right of the questions. A user can click on the list of topics that will generate questions by those topics.
-!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/topics.png)
+![Topic Navigation](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/topics.png)
 
 ### Post an Answer and a Comment
 An authorized user may post an answer to a posted question. Only the authorized user can then edit or delete the answer to the posted question. An authorized user may also post a comment to an answer. The user may also delete the posted comment.
-!(https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
+![Create an Answer](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
 
 ## Conclusion and Next Steps
 We are happy with the functionality, but we would like to add more to the styling.
