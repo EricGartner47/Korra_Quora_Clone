@@ -12,7 +12,6 @@ Korra is a full stack web application that allows logged users to:
  - Edit an answer to a posted question
  - Delete an answer to a posted question
  - Post a comment to an answer
- - Edit a comment to an answer
  - Delete a comment to an answer
 
 ## Application Architecture
