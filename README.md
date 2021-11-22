@@ -45,4 +45,4 @@ An authorized user may post an answer to a posted question. Only the authorized 
 ![Create an Answer](https://github.com/EricGartner47/QuoraClone-GroupProject/blob/main/images/answers.png)
 
 ## Conclusion and Next Steps
-We are happy with the functionality, but we would like to add more to the styling.
+We are happy with the functionality, however, we wished we were able to complete editing comments. Additionally, we would like to add more to the styling to the site to mimic Quora. Finally, we plan to complete the bonus features of a voting systems as well as replies to comments. 
