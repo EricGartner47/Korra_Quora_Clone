@@ -101,7 +101,8 @@ body {
 }
 
 .fa-search {
-    color:rgba(0, 0, 0, 0.5)
+    color:rgba(0, 0, 0, 0.5);
+    border: none;
 }
 
 .right-nav-container {
@@ -216,4 +217,9 @@ body {
 .question-title:hover {
     color: rgba(167, 2, 2, .9);
     transition: color .5s;
+}
+
+.search-button {
+    border: none;
+    background-color: transparent;
 }
